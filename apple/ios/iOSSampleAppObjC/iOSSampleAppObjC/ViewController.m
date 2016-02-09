@@ -3,8 +3,11 @@
 //  iOSSampleAppObjC
 //
 //  Created by Patrick McConnell on 2/9/16.
-//  Copyright © 2016 Patrick McConnell. All rights reserved.
+//  Copyright © 2016 Odd Networks. All rights reserved.
 //
+
+
+// A simple iOS Application that demonstrates connecting to the Odd Networks API via an Objective-C iOS App
 
 #import "ViewController.h"
 #import "OddSDK/OddSDK.h"

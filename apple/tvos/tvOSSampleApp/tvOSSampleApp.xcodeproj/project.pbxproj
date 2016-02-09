@@ -83,11 +83,11 @@
 				137DF7C91C581592001CBCE0 /* AppDelegate.swift */,
 				137DF7FD1C5A80E5001CBCE0 /* HomeCollectionViewController.swift */,
 				137DF7FF1C5A9897001CBCE0 /* CollectionCell.swift */,
+				132B77671C5AB77E00703B21 /* CollectionInfoViewController.swift */,
+				132B77651C5AB63000703B21 /* CollectionInfoVideoTableViewController.swift */,
 				137DF7CD1C581592001CBCE0 /* Main.storyboard */,
 				137DF7D01C581592001CBCE0 /* Assets.xcassets */,
 				137DF7D21C581592001CBCE0 /* Info.plist */,
-				132B77671C5AB77E00703B21 /* CollectionInfoViewController.swift */,
-				132B77651C5AB63000703B21 /* CollectionInfoVideoTableViewController.swift */,
 			);
 			path = tvOSSampleApp;
 			sourceTree = "<group>";

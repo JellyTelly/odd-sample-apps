@@ -1,0 +1,26 @@
+# odd-sample-apps
+
+Unless noted sample app code is provided in Swift
+
+####tvOS Sample App
+
+  This Application demonstrates connecting to the OddNetworks API using the `ODDSDKtvOS` framework. The app uses sample data from NASA to show how to work with OddMediaObjectCollections and OddVideos.
+  
+You will learn how to configure an Xcode project for use with our framework. This application is a fully functioning Apple TV app.
+
+You will need to download the [ODDSDKtvOS.framework](http://assets.oddnetworks.com/templates/tvos/OddSDK_tvOS.zip)
+
+This app demonstrates: 
+
+- the steps required to configure your app for accessing the Odd Networks API. 
+
+- How to link to the ODDSDKtvOS framework from Xcode
+
+- how to request data from the Odd Network servers
+
+- displaying collections of videos
+
+- displaying videos and their associated meta data
+
+- playing a video
+  
