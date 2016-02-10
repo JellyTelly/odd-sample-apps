@@ -5,16 +5,18 @@ A sample application build on the Odd Networks Platform
 
 ### OddWorksDeviceSDK
 
-Our SDK is built and hosted via [JitPack](https://jitpack.io).
+Our SDK is hosted via [Bintray](https://bintray.com/oddnetworks/oddworks/device-sdk/view).
 
 #### Compiling the SDK
 
-Include Jitpack in the `repositories` section of the app's `build.gradle` file:
+Include the Oddworks Maven repository in the `repositories` section of the app's `build.gradle` file:
 
 ```groovy
 repositories {
     // ...
-    maven { url "https://jitpack.io" }
+    maven {
+        url  "http://oddnetworks.bintray.com/oddworks"
+    }
 }
 ```
 
@@ -23,7 +25,7 @@ Include OddWorksDeviceSDK in the `dependencies` section of the app's `build.grad
 ```groovy
 dependencies {
     // ...
-    compile 'com.github.oddnetworks:OddWorksDeviceSDK:beta-1.0.0'
+    compile 'io.oddworks:device-sdk:beta-1.0.0'
 }
 ```
 
