@@ -29,7 +29,7 @@ repositories {
 }
 
 dependencies {
-    ccompile 'io.oddworks:device-sdk:beta-1.0.0'
+    compile 'io.oddworks:device-sdk:beta-1.0.0'
 
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
