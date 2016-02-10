@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+    <FrameLayout
+        android:layout_width="170dp"
+        android:layout_height="96dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/list_item_thumbnail_layout">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/list_item_image_view"
+            android:src="@drawable/preview_tile_16x9"
+            android:contentDescription="List Item Image"/>
+
+        <FrameLayout
+            android:id="@+id/media_duration_wrapper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:background="#32000000"
+            android:visibility="gone">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/media_duration"
+                android:id="@+id/entity_thumbnail_duration_overlay"
+                android:layout_gravity="end|bottom"
+                android:layout_marginEnd="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="4dp"
+                android:textColor="#ffffff"
+                android:singleLine="true"/>
+        </FrameLayout>
+    </FrameLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/list_item_thumbnail_layout"
+        android:layout_toEndOf="@+id/list_item_thumbnail_layout"
+        android:id="@+id/list_item_title"
+        android:maxLines="2"
+        android:ellipsize="marquee"
+        android:layout_marginLeft="10dp"
+        android:textSize="16dp"
+        android:text="..."/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/list_item_title"
+        android:layout_alignStart="@id/list_item_title"
+        android:layout_marginTop="5dp"
+        android:id="@+id/list_item_description"
+        android:ellipsize="end"
+        android:textSize="14dp"
+        android:text="..."/>
+</RelativeLayout>

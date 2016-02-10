@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="organization_id">nasa</string>
+    <string name="x_access_token">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2ZXJzaW9uIjoxLCJkZXZpY2VJRCI6IjBhODFjNmEwLWJiYjUtMTFlNS05ZWY4LWNiYmI0OWM4OTI1NiIsInNjb3BlIjpbImRldmljZSJdLCJpYXQiOjE0NTI4ODIxOTR9.iM26knCfqoPggNMeEUgH6_sW1kpwqmE9Hrso02g4LyQ</string>
+</resources>
