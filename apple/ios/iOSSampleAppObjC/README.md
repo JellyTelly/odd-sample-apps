@@ -1,5 +1,8 @@
 # odd-sample-apps
 
+For more information on using the iOS & tvOS frameworks visit our [Oddworks SDK documentation](http://apple.guide.oddworks.io)
+ 
+
 ####iOS Sample App in Objective-C
 
 This Objective-C application demonstrates how to connect to the OddNetworks API via the OddSDK.
