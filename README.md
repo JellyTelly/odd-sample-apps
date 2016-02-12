@@ -4,7 +4,7 @@ Sample applications demonstrating how to work with the Odd Networks API on vario
 
 ## Apple
 
-For more information on using the iOS & tvOS frameworks visit our [Oddworks SDK documentation for iOS & tvOS](http://apple.guide.oddworks.io)
+For more information on using the iOS & tvOS frameworks visit our [Oddworks SDK documentation for iOS & tvOS](http://apple.guide.oddnetworks.com)
 
 Unless noted sample app code is provided in Swift
 
@@ -18,7 +18,7 @@ This Objective-C application demonstrates how to connect to the OddNetworks API 
 
 ## Android
 
-For more information on using the Android frameworks visit our [Oddworks SDK documentation for Android](http://android.guide.oddworks.io)
+For more information on using the Android frameworks visit our [Oddworks SDK documentation for Android](http://android.guide.oddnetworks.com)
 
 
 All Android sample app code is provided in Java

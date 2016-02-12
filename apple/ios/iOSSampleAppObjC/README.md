@@ -1,6 +1,6 @@
 # odd-sample-apps
 
-For more information on using the iOS & tvOS frameworks visit our [Oddworks SDK documentation](http://apple.guide.oddworks.io)
+For more information on using the iOS & tvOS frameworks visit our [Oddworks SDK documentation](http://apple.guide.oddnetworks.com)
  
 
 ####iOS Sample App in Objective-C
