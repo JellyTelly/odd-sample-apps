@@ -24,7 +24,7 @@ android {
 repositories {
     mavenCentral()
     maven {
-        url  "http://oddnetworks.bintray.com/oddworks"
+        url  "http://oddnetworks.bintray.com/maven"
     }
 }
 
