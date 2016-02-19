@@ -1,0 +1,356 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		137A8E5E1C76680E0097889E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 137A8E5D1C76680E0097889E /* main.m */; };
+		137A8E611C76680E0097889E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 137A8E601C76680E0097889E /* AppDelegate.m */; };
+		137A8E671C76680E0097889E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 137A8E651C76680E0097889E /* Main.storyboard */; };
+		137A8E691C76680E0097889E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 137A8E681C76680E0097889E /* Assets.xcassets */; };
+		137A8E711C7668490097889E /* OddSDKtvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 137A8E701C7668490097889E /* OddSDKtvOS.framework */; };
+		137A8E721C7668490097889E /* OddSDKtvOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 137A8E701C7668490097889E /* OddSDKtvOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		137A8E761C76687E0097889E /* HomeCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 137A8E751C76687E0097889E /* HomeCollectionViewController.m */; };
+		137A8E791C7668A00097889E /* CollectionInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 137A8E781C7668A00097889E /* CollectionInfoViewController.m */; };
+		137A8E7C1C7668CE0097889E /* CollectionInfoVideoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 137A8E7B1C7668CE0097889E /* CollectionInfoVideoTableViewController.m */; };
+		137A8E7F1C7668EA0097889E /* CollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 137A8E7E1C7668EA0097889E /* CollectionCell.m */; };
+		137A8E871C767C3A0097889E /* UIView+Parallax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137A8E861C767C3A0097889E /* UIView+Parallax.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		137A8E731C7668490097889E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				137A8E721C7668490097889E /* OddSDKtvOS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		137A8E591C76680E0097889E /* tvOSSampleApp_ObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvOSSampleApp_ObjC.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		137A8E5D1C76680E0097889E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		137A8E5F1C76680E0097889E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		137A8E601C76680E0097889E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		137A8E661C76680E0097889E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		137A8E681C76680E0097889E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		137A8E6A1C76680E0097889E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		137A8E701C7668490097889E /* OddSDKtvOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OddSDKtvOS.framework; sourceTree = "<group>"; };
+		137A8E741C76687E0097889E /* HomeCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCollectionViewController.h; sourceTree = "<group>"; };
+		137A8E751C76687E0097889E /* HomeCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCollectionViewController.m; sourceTree = "<group>"; };
+		137A8E771C7668A00097889E /* CollectionInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionInfoViewController.h; sourceTree = "<group>"; };
+		137A8E781C7668A00097889E /* CollectionInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionInfoViewController.m; sourceTree = "<group>"; };
+		137A8E7A1C7668CE0097889E /* CollectionInfoVideoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionInfoVideoTableViewController.h; sourceTree = "<group>"; };
+		137A8E7B1C7668CE0097889E /* CollectionInfoVideoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionInfoVideoTableViewController.m; sourceTree = "<group>"; };
+		137A8E7D1C7668EA0097889E /* CollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionCell.h; sourceTree = "<group>"; };
+		137A8E7E1C7668EA0097889E /* CollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionCell.m; sourceTree = "<group>"; };
+		137A8E801C76774B0097889E /* tvOSSampleApp_ObjC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "tvOSSampleApp_ObjC-Bridging-Header.h"; sourceTree = "<group>"; };
+		137A8E861C767C3A0097889E /* UIView+Parallax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Parallax.swift"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		137A8E561C76680E0097889E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				137A8E711C7668490097889E /* OddSDKtvOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		137A8E501C76680E0097889E = {
+			isa = PBXGroup;
+			children = (
+				137A8E701C7668490097889E /* OddSDKtvOS.framework */,
+				137A8E5B1C76680E0097889E /* tvOSSampleApp_ObjC */,
+				137A8E5A1C76680E0097889E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		137A8E5A1C76680E0097889E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				137A8E591C76680E0097889E /* tvOSSampleApp_ObjC.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		137A8E5B1C76680E0097889E /* tvOSSampleApp_ObjC */ = {
+			isa = PBXGroup;
+			children = (
+				137A8E861C767C3A0097889E /* UIView+Parallax.swift */,
+				137A8E5F1C76680E0097889E /* AppDelegate.h */,
+				137A8E601C76680E0097889E /* AppDelegate.m */,
+				137A8E741C76687E0097889E /* HomeCollectionViewController.h */,
+				137A8E751C76687E0097889E /* HomeCollectionViewController.m */,
+				137A8E771C7668A00097889E /* CollectionInfoViewController.h */,
+				137A8E781C7668A00097889E /* CollectionInfoViewController.m */,
+				137A8E7A1C7668CE0097889E /* CollectionInfoVideoTableViewController.h */,
+				137A8E7B1C7668CE0097889E /* CollectionInfoVideoTableViewController.m */,
+				137A8E7D1C7668EA0097889E /* CollectionCell.h */,
+				137A8E7E1C7668EA0097889E /* CollectionCell.m */,
+				137A8E651C76680E0097889E /* Main.storyboard */,
+				137A8E681C76680E0097889E /* Assets.xcassets */,
+				137A8E6A1C76680E0097889E /* Info.plist */,
+				137A8E5C1C76680E0097889E /* Supporting Files */,
+				137A8E801C76774B0097889E /* tvOSSampleApp_ObjC-Bridging-Header.h */,
+			);
+			path = tvOSSampleApp_ObjC;
+			sourceTree = "<group>";
+		};
+		137A8E5C1C76680E0097889E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				137A8E5D1C76680E0097889E /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		137A8E581C76680E0097889E /* tvOSSampleApp_ObjC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 137A8E6D1C76680E0097889E /* Build configuration list for PBXNativeTarget "tvOSSampleApp_ObjC" */;
+			buildPhases = (
+				137A8E551C76680E0097889E /* Sources */,
+				137A8E561C76680E0097889E /* Frameworks */,
+				137A8E571C76680E0097889E /* Resources */,
+				137A8E731C7668490097889E /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = tvOSSampleApp_ObjC;
+			productName = tvOSSampleApp_ObjC;
+			productReference = 137A8E591C76680E0097889E /* tvOSSampleApp_ObjC.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		137A8E511C76680E0097889E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Patrick McConnell";
+				TargetAttributes = {
+					137A8E581C76680E0097889E = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 137A8E541C76680E0097889E /* Build configuration list for PBXProject "tvOSSampleApp_ObjC" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 137A8E501C76680E0097889E;
+			productRefGroup = 137A8E5A1C76680E0097889E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				137A8E581C76680E0097889E /* tvOSSampleApp_ObjC */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		137A8E571C76680E0097889E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				137A8E691C76680E0097889E /* Assets.xcassets in Resources */,
+				137A8E671C76680E0097889E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		137A8E551C76680E0097889E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				137A8E791C7668A00097889E /* CollectionInfoViewController.m in Sources */,
+				137A8E761C76687E0097889E /* HomeCollectionViewController.m in Sources */,
+				137A8E611C76680E0097889E /* AppDelegate.m in Sources */,
+				137A8E5E1C76680E0097889E /* main.m in Sources */,
+				137A8E7C1C7668CE0097889E /* CollectionInfoVideoTableViewController.m in Sources */,
+				137A8E871C767C3A0097889E /* UIView+Parallax.swift in Sources */,
+				137A8E7F1C7668EA0097889E /* CollectionCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		137A8E651C76680E0097889E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				137A8E661C76680E0097889E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		137A8E6B1C76680E0097889E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Debug;
+		};
+		137A8E6C1C76680E0097889E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		137A8E6E1C76680E0097889E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = NO;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = tvOSSampleApp_ObjC/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.oddworks.tvOSSampleApp-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		137A8E6F1C76680E0097889E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = NO;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = tvOSSampleApp_ObjC/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.oddworks.tvOSSampleApp-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		137A8E541C76680E0097889E /* Build configuration list for PBXProject "tvOSSampleApp_ObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				137A8E6B1C76680E0097889E /* Debug */,
+				137A8E6C1C76680E0097889E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		137A8E6D1C76680E0097889E /* Build configuration list for PBXNativeTarget "tvOSSampleApp_ObjC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				137A8E6E1C76680E0097889E /* Debug */,
+				137A8E6F1C76680E0097889E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 137A8E511C76680E0097889E /* Project object */;
+}

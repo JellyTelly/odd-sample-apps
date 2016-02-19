@@ -10,6 +10,8 @@ Unless noted sample app code is provided in Swift
 
 ### tvOS Sample App
 
+The tvOS Sample App is available in both Swift and Objective-C versions.
+
 This Application demonstrates connecting to the OddNetworks API using the ODDtvOSSDK. The app uses sample data from NASA to show how to work with OddMediaObjectCollections and OddVideos
   
 ### iOS Sample App in Objective-C
