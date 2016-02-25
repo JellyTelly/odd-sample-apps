@@ -16,7 +16,13 @@ This Application demonstrates connecting to the OddNetworks API using the ODDtvO
   
 ### iOS Sample App in Objective-C
 
-This Objective-C application demonstrates how to connect to the OddNetworks API via the OddSDK.
+This Objective-C application demonstrates how to connect to the Oddnetworks API via the OddSDK.
+
+### iOS Search Sample App
+
+Demonstrates using the Oddnetworks SDK to perform a search on your media catalog.
+
+Available in both Objective-C and Swift.
 
 ## Android
 
