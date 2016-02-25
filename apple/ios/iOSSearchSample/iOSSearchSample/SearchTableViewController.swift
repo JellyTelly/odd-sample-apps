@@ -95,8 +95,6 @@ class SearchTableViewController: UITableViewController {
     to continue
     OddContentStore.sharedStore.API.authToken = <insert your authToken here>
     */
-
-    OddContentStore.sharedStore.API.authToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2ZXJzaW9uIjoxLCJkZXZpY2VJRCI6IjkxNWU2MmQwLWI5MzctMTFlNS04NWZiLTk5ZDM0MDQyNGU1ZCIsInNjb3BlIjpbImRldmljZSJdLCJpYXQiOjE0NTI2MDg0MDF9.zMVD7BZssmJ7Bzo5wDYA1jjrLyU_hNg-vgWZIQJtaX8"
     
     // if your app is doing more than just searching you will want to initialize
     // the content store. In this sample we do not need to do so. Since all searches
