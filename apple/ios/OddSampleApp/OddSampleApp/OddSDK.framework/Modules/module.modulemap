@@ -1,0 +1,10 @@
+framework module OddSDK {
+  umbrella header "OddSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module OddSDK.Swift {
+    header "OddSDK-Swift.h"
+}
