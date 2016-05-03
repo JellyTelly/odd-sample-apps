@@ -31,16 +31,6 @@ class HomeCollectionViewController: UICollectionViewController {
     configureSDK()
   }
   
-  /*
-  // MARK: - Navigation
-  
-  // In a storyboard-based application, you will often want to do a little preparation before navigation
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-  // Get the new view controller using [segue destinationViewController].
-  // Pass the selected object to the new view controller.
-  }
-  */
-  
   // MARK: UICollectionViewDataSource
   
   override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -49,7 +39,7 @@ class HomeCollectionViewController: UICollectionViewController {
   
   
   override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    guard let node = self.collection.relationshipNodeWithName("entities") as? OddRelationshipNode else { return 0 }
+    guard let node = self.collection.relationshipNodeWithName("entities") else { return 0 }
     return node.numberOfRelationships
   }
   
@@ -113,7 +103,7 @@ class HomeCollectionViewController: UICollectionViewController {
         
         // at this point the homeview, featuredMedia, featuredCollections and promotion should all be in the OddMediaStore cache
         
-        guard let featuredCollection = homeview.relationshipNodeWithName("featuredCollections") as? OddRelationshipNode,
+        guard let featuredCollection = homeview.relationshipNodeWithName("featuredCollections"),
           let node = featuredCollection.relationship as? OddRelationship else {
           OddLogger.error("Unable to determine featuredCollection")
           return
@@ -160,7 +150,7 @@ class HomeCollectionViewController: UICollectionViewController {
   
 
   func fetchCollections() {
-    guard let node = self.collection.relationshipNodeWithName("entities") as? OddRelationshipNode,
+    guard let node = self.collection.relationshipNodeWithName("entities"),
       let ids = node.allIds  else { return }
     
     OddContentStore.sharedStore.objectsOfType(.Collection, ids: ids, include: nil) { (objects, errors) in
