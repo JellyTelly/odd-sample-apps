@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		132B77661C5AB63000703B21 /* CollectionInfoVideoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B77651C5AB63000703B21 /* CollectionInfoVideoTableViewController.swift */; };
 		132B77681C5AB77E00703B21 /* CollectionInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B77671C5AB77E00703B21 /* CollectionInfoViewController.swift */; };
+		136E36911CD2A18E00714EA4 /* OddSDKtvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 136E36901CD2A18E00714EA4 /* OddSDKtvOS.framework */; };
+		136E36921CD2A18E00714EA4 /* OddSDKtvOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 136E36901CD2A18E00714EA4 /* OddSDKtvOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		137DF7CA1C581592001CBCE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137DF7C91C581592001CBCE0 /* AppDelegate.swift */; };
 		137DF7CF1C581592001CBCE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 137DF7CD1C581592001CBCE0 /* Main.storyboard */; };
 		137DF7D11C581592001CBCE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 137DF7D01C581592001CBCE0 /* Assets.xcassets */; };
-		137DF7D91C58178C001CBCE0 /* OddSDKtvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 137DF7D81C58178C001CBCE0 /* OddSDKtvOS.framework */; };
-		137DF7DA1C58178C001CBCE0 /* OddSDKtvOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 137DF7D81C58178C001CBCE0 /* OddSDKtvOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		137DF7FE1C5A80E5001CBCE0 /* HomeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137DF7FD1C5A80E5001CBCE0 /* HomeCollectionViewController.swift */; };
 		137DF8001C5A9897001CBCE0 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137DF7FF1C5A9897001CBCE0 /* CollectionCell.swift */; };
 		137DF8211C5AAF16001CBCE0 /* UIView+Parallax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137DF8201C5AAF16001CBCE0 /* UIView+Parallax.swift */; };
@@ -26,7 +26,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				137DF7DA1C58178C001CBCE0 /* OddSDKtvOS.framework in Embed Frameworks */,
+				136E36921CD2A18E00714EA4 /* OddSDKtvOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -36,12 +36,12 @@
 /* Begin PBXFileReference section */
 		132B77651C5AB63000703B21 /* CollectionInfoVideoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionInfoVideoTableViewController.swift; sourceTree = "<group>"; };
 		132B77671C5AB77E00703B21 /* CollectionInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionInfoViewController.swift; sourceTree = "<group>"; };
+		136E36901CD2A18E00714EA4 /* OddSDKtvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = OddSDKtvOS.framework; path = "/Users/patrickmcconnell/Library/Developer/Xcode/DerivedData/Sample_Apps-hebdhqlacvbemjejtebqdopujxwv/Build/Products/Debug-appletvsimulator/OddSDKtvOS.framework"; sourceTree = "<absolute>"; };
 		137DF7C61C581592001CBCE0 /* tvOSSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvOSSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		137DF7C91C581592001CBCE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		137DF7CE1C581592001CBCE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		137DF7D01C581592001CBCE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		137DF7D21C581592001CBCE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		137DF7D81C58178C001CBCE0 /* OddSDKtvOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OddSDKtvOS.framework; sourceTree = "<group>"; };
 		137DF7FD1C5A80E5001CBCE0 /* HomeCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewController.swift; sourceTree = "<group>"; };
 		137DF7FF1C5A9897001CBCE0 /* CollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		137DF8201C5AAF16001CBCE0 /* UIView+Parallax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Parallax.swift"; sourceTree = "<group>"; };
@@ -52,7 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				137DF7D91C58178C001CBCE0 /* OddSDKtvOS.framework in Frameworks */,
+				136E36911CD2A18E00714EA4 /* OddSDKtvOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,7 +62,7 @@
 		137DF7BD1C581592001CBCE0 = {
 			isa = PBXGroup;
 			children = (
-				137DF7D81C58178C001CBCE0 /* OddSDKtvOS.framework */,
+				136E36901CD2A18E00714EA4 /* OddSDKtvOS.framework */,
 				137DF7C81C581592001CBCE0 /* tvOSSampleApp */,
 				137DF7C71C581592001CBCE0 /* Products */,
 			);
@@ -272,6 +272,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -288,6 +289,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

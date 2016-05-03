@@ -34,23 +34,23 @@ class CollectionInfoViewController: UIViewController {
 
   // MARK: - Navigation
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    guard let id = segue.identifier else { return }
-    switch id {
-    case "videoTableEmbed":
-      guard let vc = segue.destinationViewController as? CollectionInfoVideoTableViewController else { break }
-      
-      OddContentStore.sharedStore.objectsOfType(.Video, ids: self.collection.objectIds, callback: { (objects) -> Void in
-        if let videos = objects as? Array<OddVideo> {
-          vc.videos = videos
-        }
-      })
-      
-    default:
-      break
-    }
-
-  }
+//  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//    guard let id = segue.identifier else { return }
+//    switch id {
+//    case "videoTableEmbed":
+////      guard let vc = segue.destinationViewController as? CollectionInfoVideoTableViewController else { break }
+//      
+////      OddContentStore.sharedStore.objectsOfType(.Video, ids: self.collection.objectIds, include:nil, callback: { (objects, errors) -> Void in
+////        if let videos = objects as? Array<OddVideo> {
+////          vc.videos = videos
+////        }
+////      })
+//      
+//    default:
+//      break
+//    }
+//
+//  }
 
 
   // MARK: - Helpers

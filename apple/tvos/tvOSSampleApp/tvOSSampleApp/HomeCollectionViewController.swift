@@ -11,7 +11,19 @@ import OddSDKtvOS
 
 class HomeCollectionViewController: UICollectionViewController {
   
-  var collections = Array<OddMediaObjectCollection>()
+  var collection = OddMediaObjectCollection() {
+    didSet {
+      self.fetchCollections()
+    }
+  }
+  
+  var collections = Array<OddMediaObjectCollection>() {
+    didSet {
+      dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        self.collectionView?.reloadData()
+      })
+    }
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -37,7 +49,8 @@ class HomeCollectionViewController: UICollectionViewController {
   
   
   override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return self.collections.count
+    guard let node = self.collection.relationshipNodeWithName("entities") as? OddRelationshipNode else { return 0 }
+    return node.numberOfRelationships
   }
   
   
@@ -46,11 +59,9 @@ class HomeCollectionViewController: UICollectionViewController {
     
     // fetch the collection associated with this cell
     let currentCollection = self.collections[indexPath.row]
-    
-    // call our custom cell class to confgure itself with the collection data
     cell.configureWithCollection(currentCollection)
-    
     return cell
+    
   }
   
   override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -83,34 +94,80 @@ class HomeCollectionViewController: UICollectionViewController {
   func configureOnContentLoaded() {
     let contentStoreInfo = OddContentStore.sharedStore.mediaObjectInfo()
     print( "\(contentStoreInfo)" )
-    if let featuredCollections = OddContentStore.sharedStore.featuredCollections {
-      self.collections = featuredCollections
+    
+    guard let config = OddContentStore.sharedStore.config,
+      let homeViewId = config.idForViewName("homepage") else {
+      OddLogger.error("Error loading config. Unable to configure application")
+      return
+    }
       
-      // reload the collection view on the main thread so changes are immediate
-      dispatch_async(dispatch_get_main_queue(), { () -> Void in
-        self.collectionView?.reloadData()
-      })
+    OddContentStore.sharedStore.objectsOfType(.View, ids: [homeViewId], include: "featuredMedia,featuredCollections,promotion") { (objects, errors) in
+      if errors != nil {
+        OddLogger.error("Unable to fetch homeview: \(errors!.first?.localizedDescription)")
+        return
+      } else {
+        guard let homeview = objects.first as? OddView else {
+          OddLogger.error("Unable to fetch homeview")
+          return
+        }
+        
+        // at this point the homeview, featuredMedia, featuredCollections and promotion should all be in the OddMediaStore cache
+        
+        guard let featuredCollection = homeview.relationshipNodeWithName("featuredCollections") as? OddRelationshipNode,
+          let node = featuredCollection.relationship as? OddRelationship else {
+          OddLogger.error("Unable to determine featuredCollection")
+          return
+        }
+        
+        let featuredCollectionId = node.id
+        
+        OddContentStore.sharedStore.objectsOfType(.Collection, ids: [featuredCollectionId], include: "entities", callback: { (objects, errors) in
+          if errors != nil {
+            OddLogger.error("Error loading featuredCollection")
+            return
+          }
+          
+          if let featuredCollection = objects.first as? OddMediaObjectCollection {
+            self.collection = featuredCollection
+          }
+          
+        })
+        
+      }
     }
   }
   
   
   // Setup the SDK to commuicate with our Oddworks account
   func configureSDK() {
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: "configureOnContentLoaded", name: OddConstants.OddContentStoreCompletedInitialLoadNotification, object: nil)
-    
     // Setting the log level to .Info provides additional information from the OddContentStore
     // The OddLogger has 3 levels: .Info, .Warning and .Error. The default is .Error
-    //    OddLogger.logLevel = .Info
+    OddLogger.logLevel = .Info
     
-    
+    OddContentStore.sharedStore.API.serverMode = .Local
     /* Please visit https://www.oddnetworks.com/getstarted/ to get the demo app authentication token
     this line is required to allow access to the API. Once you have entered your authToken uncomment 
-    to continue
-    OddContentStore.sharedStore.API.authToken = <insert your authToken here>
-    */
+    to continue*/
+    OddContentStore.sharedStore.API.authToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2ZXJzaW9uIjoxLCJjaGFubmVsIjoibmFzYSIsInBsYXRmb3JtIjoiYXBwbGUtdHYiLCJzY29wZSI6WyJwbGF0Zm9ybSJdLCJpYXQiOjE0NjE4NzU5OTV9.uMJ6ckqkI283bhUrYJL30-8R6mzYBqa0H5gDNqqMaDY"
+
     
-    OddContentStore.sharedStore.initialize()
+    OddContentStore.sharedStore.initialize { (success, error) in
+      if success {
+        self.configureOnContentLoaded()
+      }
+    }
   }
   
+
+  func fetchCollections() {
+    guard let node = self.collection.relationshipNodeWithName("entities") as? OddRelationshipNode,
+      let ids = node.allIds  else { return }
+    
+    OddContentStore.sharedStore.objectsOfType(.Collection, ids: ids, include: nil) { (objects, errors) in
+      if let theCollections = objects as? Array<OddMediaObjectCollection> {
+        self.collections = theCollections
+      }
+    }
+  }
   
 }
