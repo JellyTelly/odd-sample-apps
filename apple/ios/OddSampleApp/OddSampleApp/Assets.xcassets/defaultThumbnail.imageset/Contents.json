@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "app-icon.jpg",
+      "filename" : "default-16x9-thumbnail.png",
       "scale" : "1x"
     },
     {
