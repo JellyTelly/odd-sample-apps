@@ -14,6 +14,9 @@ class RootViewController: UIViewController {
   @IBOutlet weak var menuWidthConstraint: NSLayoutConstraint!
   @IBOutlet weak var homeViewContainer: UIView!
   var homeViewController: HomeViewController?
+  var homeMenuViewController: HomeMenuTableViewController?
+  var homeView: OddView?
+  var menuView: OddView?
   
   
   override func viewDidLoad() {
@@ -38,12 +41,14 @@ class RootViewController: UIViewController {
         vc = navCon.topViewController as? HomeViewController {
           vc.ourContainerView = homeViewContainer
           self.homeViewController = vc
+          vc.homeView = self.homeView
       }
     } else if segue.identifier == "homeMenuEmbedSegue" {
       print("homeMenuEmbed")
       if let navCon = segue.destinationViewController as? UINavigationController,
         vc = navCon.topViewController as? HomeMenuTableViewController {
           vc.rootController = self
+          vc.homeMenuView = self.menuView
       }
     }
   }

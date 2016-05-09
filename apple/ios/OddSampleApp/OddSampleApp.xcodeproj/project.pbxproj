@@ -36,6 +36,7 @@
 		028628A91C727F460078AF8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 028628A71C727F460078AF8A /* Main.storyboard */; };
 		028628AB1C727F460078AF8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 028628AA1C727F460078AF8A /* Assets.xcassets */; };
 		028628AE1C727F460078AF8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 028628AC1C727F460078AF8A /* LaunchScreen.storyboard */; };
+		02FCC00D1CDBD704005CFE5D /* ContentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FCC00C1CDBD704005CFE5D /* ContentHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -83,6 +84,7 @@
 		028628AA1C727F460078AF8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		028628AD1C727F460078AF8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		028628AF1C727F460078AF8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02FCC00C1CDBD704005CFE5D /* ContentHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 		020815471C73A98800B1A2EC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				02FCC00C1CDBD704005CFE5D /* ContentHelper.swift */,
 				020815421C73A80700B1A2EC /* OddMediaOverlayView.swift */,
 				020815401C73A77A00B1A2EC /* OddAVPlayer.swift */,
 				020815481C73A99E00B1A2EC /* Cells */,
@@ -287,6 +290,7 @@
 				028628A41C727F460078AF8A /* AppDelegate.swift in Sources */,
 				020815411C73A77A00B1A2EC /* OddAVPlayer.swift in Sources */,
 				020815261C737A8900B1A2EC /* HomeMenuTableViewController.swift in Sources */,
+				02FCC00D1CDBD704005CFE5D /* ContentHelper.swift in Sources */,
 				022E93DD1C751983007E01A2 /* GradientNavigationController.swift in Sources */,
 				020815391C73A54100B1A2EC /* AccessoryViewTableViewCell.swift in Sources */,
 				022E93D51C74CEC0007E01A2 /* CollectionTableViewController.swift in Sources */,

@@ -11,14 +11,10 @@ import OddSDK
 
 class HomeTableViewController: UITableViewController {
   
-  var featuredVideo: OddVideo? {
-    return OddContentStore.sharedStore.featuredMediaObject as? OddVideo
-  }
-  var featuredCollections: Array<OddMediaObjectCollection>? {
-    return OddContentStore.sharedStore.featuredCollections
-  }
-  
+  var featuredMedia: OddVideo?
+  var featuredCollections: Array<OddMediaObjectCollection>?
   var homeVC: HomeViewController?
+  var homeView: OddView?
   
   var playerCell: LivePlayerTableViewCell?
   
@@ -28,6 +24,7 @@ class HomeTableViewController: UITableViewController {
     self.tableView.rowHeight = UITableViewAutomaticDimension
     self.tableView.separatorColor = UIColor.clearColor()
     self.tableView.backgroundColor = ThemeManager.defaultManager.currentTheme().tableViewBackgroundColor
+    loadFeaturedContent()
   }
   
   func fixTableViewInsets() {
@@ -64,7 +61,7 @@ class HomeTableViewController: UITableViewController {
     var cell = UITableViewCell()
     switch indexPath.row {
     case 0:
-      if let video = self.featuredVideo {
+      if let video = self.featuredMedia {
         if let cell = tableView.dequeueReusableCellWithIdentifier("VideoPlayerTableViewCell", forIndexPath: indexPath) as? LivePlayerTableViewCell {
           cell.configureWithVideo(video)
           self.playerCell = cell
@@ -131,6 +128,53 @@ class HomeTableViewController: UITableViewController {
   func reload() {
     dispatch_async(dispatch_get_main_queue(), { () -> Void in
       self.tableView.reloadData()
+    })
+  }
+  
+  func loadFeaturedContent() {
+    // Load the featured Collection
+    guard let homeview = self.homeView, featuredCollection = homeview.relationshipNodeWithName("featuredCollections"),
+      let featuredCollectionNode = featuredCollection.relationship as? OddRelationship else {
+        OddLogger.error("Unable to determine featuredCollection")
+        return
+    }
+    let featuredCollectionId = featuredCollectionNode.id
+    
+    OddContentStore.sharedStore.objectsOfType(.Collection, ids: [featuredCollectionId], include: "entities", callback: { (objects, errors) in
+      if errors != nil {
+        OddLogger.error("Error loading featuredCollection")
+        return
+      }
+      if let featuredCollection = objects.first as? OddMediaObjectCollection, ids = featuredCollection.relationshipNodeWithName("entities")?.allIds {
+        // Load the contents of that featured Collection
+        OddContentStore.sharedStore.objectsOfType(.Collection, ids: ids, include: "entities", callback: { (objects, errors) in
+          if errors != nil {
+            OddLogger.error("Error loading featuredCollection")
+            return
+          }
+          if let featuredCollections = objects as? Array<OddMediaObjectCollection> {
+            self.featuredCollections = featuredCollections
+            
+            // Load the featured Media Object
+            guard let featuredMedia = homeview.relationshipNodeWithName("featuredMedia"),
+              let featuredMediaNode = featuredMedia.relationship as? OddRelationship else {
+                OddLogger.error("Unable to determine featuredMedia")
+                return
+            }
+            let featuredMediaId = featuredMediaNode.id
+            OddContentStore.sharedStore.objectsOfType(.Video, ids: [featuredMediaId], include: "entities", callback: { (objects, errors) in
+              if errors != nil {
+                OddLogger.error("Error loading featuredCollection")
+                return
+              }
+              if let featuredMedia = objects.first as? OddVideo {
+                self.featuredMedia = featuredMedia
+                self.reload()
+              }
+            })
+          }
+        })
+      }
     })
   }
 

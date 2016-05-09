@@ -177,10 +177,6 @@ SWIFT_CLASS("_TtC6OddSDK10APIService")
 @end
 
 
-@interface NSData (SWIFT_EXTENSION(OddSDK))
-@end
-
-
 @interface NSDate (SWIFT_EXTENSION(OddSDK))
 @end
 
@@ -194,6 +190,7 @@ SWIFT_CLASS("_TtC6OddSDK10APIService")
 
 @class NSCoder;
 @class UIImage;
+enum OddMediaObjectType : NSInteger;
 
 
 /// The root object class for all media object types
@@ -235,14 +232,23 @@ SWIFT_CLASS("_TtC6OddSDK14OddMediaObject")
 /// A URL string to a thumbnail image to be used in conjunction with the media object
 @property (nonatomic, copy) NSString * _Nullable thumbnailLink;
 
+/// A customizable URL string that enables formatting on the thumbnailLink
+@property (nonatomic, copy) NSString * _Nullable formattedThumbnailLink;
+
 /// The date the content was released
 @property (nonatomic, copy) NSString * _Nullable releaseDate;
+
+/// The date the media object was downloaded to the device
+@property (nonatomic, strong) NSDate * _Nullable downloadDate;
 
 /// A placeholder string for the title
 @property (nonatomic, copy) NSString * _Nonnull defaultTitle;
 
 /// A placeholder string for the media objects notes
 @property (nonatomic, copy) NSString * _Nonnull defaultSubtitle;
+
+/// Customer specific information A customer may require data that only their application can make use of. In these cases this information is passed along in json format under the meta tag. The individual fields of the meta section are not accessible directly via this API. It is the application developers responsibitly to parse this additional data
+@property (nonatomic, copy) NSDictionary<NSString *, id> * _Nullable meta;
 
 /// When was this object last updated from the server
 @property (nonatomic, strong) NSDate * _Nonnull lastUpdate;
@@ -279,6 +285,11 @@ SWIFT_CLASS("_TtC6OddSDK14OddMediaObject")
 
 /// Convenience method to return a given keys value or nil if it is not found
 - (id _Nullable)valueForMetaKey:(NSString * _Nonnull)key;
+
+/// Convenience method to retun all keys in the mediaObjects meta dictionary
+- (NSSet<NSString *> * _Nullable)relationshipNodeNames;
+- (NSInteger)numberOfItemsInRelationshipNodeWithName:(NSString * _Nonnull)name;
+- (BOOL)objectIsOfType:(enum OddMediaObjectType)type;
 @end
 
 
@@ -290,6 +301,12 @@ SWIFT_CLASS("_TtC6OddSDK10OddArticle")
 
 SWIFT_CLASS("_TtC6OddSDK9OddConfig")
 @interface OddConfig : NSObject
+
+/// Convenience method to retun all view names in the views dictionary
+- (NSSet<NSString *> * _Nullable)viewNames;
+
+/// Convenience method to return a given views id or nil if it is not found
+- (NSString * _Nullable)idForViewName:(NSString * _Nonnull)viewName;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
@@ -301,6 +318,12 @@ SWIFT_CLASS("_TtC6OddSDK12OddConstants")
 
 /// The notification posted by the OddContentStore when there is an error fetching the app config
 + (NSString * _Nonnull)OddErrorFetchingConfigNotification;
+
+/// The notification posted by the OddContentStore when the OddConfig has been successfully fetched from the server
++ (NSString * _Nonnull)OddFetchedConfigNotification;
+
+/// The notification posted by the OddContentStore when there is an error fetching a view
++ (NSString * _Nonnull)OddErrorFetchingViewNotification;
 
 /// The notification posted by the OddContentStore when there is an error fetching the main/home view information
 + (NSString * _Nonnull)OddErrorFetchingHomeViewNotification;
@@ -325,15 +348,15 @@ SWIFT_CLASS("_TtC6OddSDK12OddConstants")
 + (NSString * _Nonnull)OddStartedSearchNotification;
 + (NSString * _Nonnull)OddAuthenticationStateChangedNotification;
 + (NSString * _Nonnull)OddAuthenticationErrorCheckingStateNotification;
++ (NSString * _Nonnull)OddConnectionOfflineNotification;
++ (NSString * _Nonnull)OddImageLoadDidFail;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
-@class OddPromotion;
-@class OddMediaObjectCollection;
 @class OddEvent;
 @class OddExternal;
-enum OddMediaObjectType : NSInteger;
 @class OddVideo;
+@class OddMediaObjectCollection;
 
 
 /// Class to load and store the various OddMediaObject types Applications should only maintain one instance of the content store and access that instance through the sharedStore() instance variable
@@ -428,15 +451,6 @@ SWIFT_CLASS("_TtC6OddSDK15OddContentStore")
 /// The applications configurable settings as loaded from the server
 @property (nonatomic, strong) OddConfig * _Nullable config;
 
-/// The featured OddPromotion object to be displayed by client applications
-@property (nonatomic, readonly, strong) OddPromotion * _Nullable featuredPromotion;
-
-/// The featured OddMediaObject to be displayed by client applications
-@property (nonatomic, readonly, strong) OddMediaObject * _Nullable featuredMediaObject;
-
-/// The featured OddMediaCollections to be displayed by client applications
-@property (nonatomic, readonly, copy) NSArray<OddMediaObjectCollection *> * _Nullable featuredCollections;
-
 /// Determines whether objects in the object store can expire based on a cache time to live set via HTTP header from server responses
 @property (nonatomic) BOOL useCacheTTL;
 @property (nonatomic, readonly, copy) NSArray<OddArticle *> * _Nullable articles;
@@ -444,8 +458,8 @@ SWIFT_CLASS("_TtC6OddSDK15OddContentStore")
 @property (nonatomic, readonly, copy) NSArray<OddExternal *> * _Nullable externals;
 @property (nonatomic, readonly, copy) NSArray<OddMediaObject *> * _Nullable menuItems;
 
-/// Initializes the content store. If the config is successfully loaded upon completion the OddContentStore instance will contain an instance of OddConfig. If the loading of the config is successful this method will call fetchViewInfo() to begin loading the home view and associated objects
-- (void)initialize;
+/// Initializes the content store. If the config is successfully loaded upon completion the OddContentStore instance will contain an instance of OddConfig. Initialize will call back the closure passed with the success and/or any error encountered during the loading of the config
+- (void)initialize:(void (^ _Nonnull)(BOOL, NSError * _Nullable))success;
 - (void)resetStore;
 
 /// Locates media objects by type and id
@@ -466,7 +480,22 @@ SWIFT_CLASS("_TtC6OddSDK15OddContentStore")
 /// </code> passed to <code>callback
 /// </code> will either contain the entities matching the query or be empty
 /// if no entities were found
-- (void)objectsOfType:(enum OddMediaObjectType)type ids:(NSArray<NSString *> * _Nonnull)ids callback:(void (^ _Nonnull)(NSArray<OddMediaObject *> * _Nonnull))callback;
+- (void)objectsOfType:(enum OddMediaObjectType)type ids:(NSArray<NSString *> * _Nonnull)ids include:(NSString * _Nullable)include callback:(void (^ _Nonnull)(NSArray<OddMediaObject *> * _Nonnull, NSArray<NSError *> * _Nullable))callback;
+
+/// Calls the API server to locate media objects of a type with a given id
+///
+/// \param type String the media object type as defined on the server
+/// ("video" or "collection") are the currently supported types
+///
+/// \param id <code>Array<String>
+/// </code> the id of the entity to be fetched
+///
+/// \param callback <code>( Array<OddMediaObject> ) -> Void
+/// </code> a callback executed once the search is complete
+/// The array passed to <code>callback
+/// </code> will either contain the entities matching the query or be empty
+/// if no entities wer found
+- (void)fetchObjectsOfType:(enum OddMediaObjectType)type ids:(NSArray<NSString *> * _Nonnull)ids include:(NSString * _Nullable)include callback:(void (^ _Nonnull)(NSArray<OddMediaObject *> * _Nonnull, NSArray<NSError *> * _Nullable))callback;
 
 /// Calls the API server to locate a single media object of a type with a given id
 ///
@@ -491,7 +520,7 @@ SWIFT_CLASS("_TtC6OddSDK15OddContentStore")
 /// The object passed to <code>callback
 /// </code> will either be the entity matching the query or be nil
 /// if no entity was found
-- (void)fetchObjectType:(enum OddMediaObjectType)type id:(NSString * _Nonnull)id callback:(void (^ _Nonnull)(OddMediaObject * _Nullable))callback;
+- (void)fetchObjectType:(enum OddMediaObjectType)type id:(NSString * _Nonnull)id include:(NSString * _Nullable)include callback:(void (^ _Nonnull)(OddMediaObject * _Nullable, NSError * _Nullable))callback;
 
 /// Calls the API server to locate media objects that match the url query param
 ///
@@ -506,22 +535,7 @@ SWIFT_CLASS("_TtC6OddSDK15OddContentStore")
 /// The array passed to <code>callback
 /// </code> will either contain the entities matching the query or be empty
 /// if no entities were found
-- (void)fetchObjectsWithQuery:(enum OddMediaObjectType)type query:(NSString * _Nonnull)query callback:(void (^ _Nonnull)(NSArray<OddMediaObject *> * _Nonnull))callback;
-
-/// Calls the API server to locate media objects of a type with a given id
-///
-/// \param type String the media object type as defined on the server
-/// ("video" or "collection") are the currently supported types
-///
-/// \param id <code>Array<String>
-/// </code> the id of the entity to be fetched
-///
-/// \param callback <code>( Array<OddMediaObject> ) -> Void
-/// </code> a callback executed once the search is complete
-/// The array passed to <code>callback
-/// </code> will either contain the entities matching the query or be empty
-/// if no entities wer found
-- (void)fetchObjectsOfType:(enum OddMediaObjectType)type ids:(NSArray<NSString *> * _Nonnull)ids callback:(void (^ _Nonnull)(NSArray<OddMediaObject *> * _Nonnull))callback;
+- (void)fetchObjectsWithQuery:(enum OddMediaObjectType)type query:(NSString * _Nonnull)query callback:(void (^ _Nonnull)(NSArray<OddMediaObject *> * _Nonnull, NSError * _Nullable))callback;
 
 /// Returns the media object in the mediaStore with a specified id
 ///
@@ -592,6 +606,7 @@ SWIFT_CLASS("_TtC6OddSDK13OddGateKeeper")
 /// A singleton instance of the GateKeeper class All access to the users authentication credentials should be made through this singleton instance
 + (OddGateKeeper * _Nonnull)sharedKeeper;
 - (void)fetchAuthenticationConfig:(void (^ _Nonnull)(NSString * _Nullable, NSString * _Nullable, NSString * _Nullable, NSError * _Nullable))callback;
+- (void)blowAwayCredentials;
 - (void)fetchAuthenticationToken;
 - (void)pollForAuthentication;
 - (BOOL)userIsAuthenticated;
@@ -635,25 +650,18 @@ SWIFT_CLASS("_TtC6OddSDK9OddLogger")
 /// </code>s
 SWIFT_CLASS("_TtC6OddSDK24OddMediaObjectCollection")
 @interface OddMediaObjectCollection : OddMediaObject
-
-/// For each OddMediaObject stored in the collection we store only the OddMediaObject's id.
-@property (nonatomic, readonly, copy) NSArray<NSString *> * _Nonnull objectIds;
-
-/// The number of OddMediaObjects in the collection
-@property (nonatomic, readonly) NSInteger numberOfObjects;
-- (NSArray<NSString *> * _Nonnull)idsOfAllObjectsOfType:(enum OddMediaObjectType)type;
-- (void)fetchAllObjects:(void (^ _Nonnull)(NSArray<OddMediaObject *> * _Nonnull))callback;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
 typedef SWIFT_ENUM(NSInteger, OddMediaObjectType) {
-  OddMediaObjectTypeVideo = 0,
-  OddMediaObjectTypeLiveStream = 1,
-  OddMediaObjectTypeCollection = 2,
-  OddMediaObjectTypePromotion = 3,
-  OddMediaObjectTypeArticle = 4,
-  OddMediaObjectTypeEvent = 5,
-  OddMediaObjectTypeExternal = 6,
+  OddMediaObjectTypeView = 0,
+  OddMediaObjectTypeVideo = 1,
+  OddMediaObjectTypeLiveStream = 2,
+  OddMediaObjectTypeCollection = 3,
+  OddMediaObjectTypePromotion = 4,
+  OddMediaObjectTypeArticle = 5,
+  OddMediaObjectTypeEvent = 6,
+  OddMediaObjectTypeExternal = 7,
 };
 
 
@@ -707,6 +715,12 @@ SWIFT_CLASS("_TtC6OddSDK8OddVideo")
 
 /// The URL for the videos closed captioning track if provided as a separate asset
 @property (nonatomic, copy) NSString * _Nullable closedCaptionsUrlString;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+SWIFT_CLASS("_TtC6OddSDK7OddView")
+@interface OddView : OddMediaObject
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 

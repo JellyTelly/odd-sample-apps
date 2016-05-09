@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CDr-zh-xc6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CDr-zh-xc6">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -220,6 +220,7 @@
                         <segue destination="zjW-yG-dW0" kind="show" identifier="showCollectionSegue" id="Kvz-8X-jLw"/>
                         <segue destination="fmc-0g-ISx" kind="show" identifier="showSearchSegue" id="aFO-22-G4a"/>
                         <segue destination="fmc-0g-ISx" kind="show" identifier="showSearchAnimatedSegue" id="UXj-kh-4R4"/>
+                        <segue destination="a9y-ea-zVq" kind="show" identifier="showVideoSegue" id="WVj-sE-zPm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BkK-iF-3KT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -292,7 +293,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lHz-ac-7sn">
                                             <rect key="frame" x="8" y="241" width="398" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -424,7 +425,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j0Y-73-saY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1811" y="1207"/>
+            <point key="canvasLocation" x="1783" y="1241"/>
         </scene>
         <!--Gradient Navigation Controller-->
         <scene sceneID="mPE-xE-Jnu">
@@ -890,7 +891,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4mo-Ww-AmA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2811" y="605"/>
+            <point key="canvasLocation" x="2817" y="615"/>
         </scene>
         <!--Search Table View Controller-->
         <scene sceneID="t4Z-IC-jeG">
@@ -1014,8 +1015,8 @@
         <image name="splashBackground" width="750" height="1334"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Kvz-8X-jLw"/>
         <segue reference="UXj-kh-4R4"/>
-        <segue reference="gEw-T7-I8r"/>
-        <segue reference="f4N-Q4-HSB"/>
+        <segue reference="WVj-sE-zPm"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -129,8 +129,8 @@ class CollectionTableViewController: UITableViewController {
   }
   
   func fetchMediaObjects() {
-    if let collection = self.mediaObjectCollection {
-      OddContentStore.sharedStore.fetchObjectsOfType(.Video, ids: collection.objectIds, callback: { (objects) -> () in
+    if let collection = self.mediaObjectCollection, ids = collection.relationshipNodeWithName("entities")?.allIds {
+      OddContentStore.sharedStore.fetchObjectsOfType(.Video, ids: ids, include: nil, callback: { (objects, errors) -> () in
         if let videos = objects as? Array<OddVideo> {
           dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.mediaObjects = videos

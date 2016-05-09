@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/OddSDK-Swift.h</key>
 		<data>
-		iC/ce/rT3LIiGOXyI69PzCWQjkQ=
+		j3mYDrbIz2jRuTbuZXfHFz95RAs=
 		</data>
 		<key>Headers/OddSDK.h</key>
 		<data>
@@ -14,23 +14,23 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		YbcZhTZ12xWSdTsCYoeaBN3w3zs=
+		QAK7rfqDOnHkEipD4ATUC2pZJrk=
 		</data>
 		<key>Modules/OddSDK.swiftmodule/arm.swiftdoc</key>
 		<data>
-		0ecV0QqsHj9rylxBd8ku4zYbSbk=
+		MWigoi8hJhTEglMBHB+iSzN2xHU=
 		</data>
 		<key>Modules/OddSDK.swiftmodule/arm.swiftmodule</key>
 		<data>
-		1cR5szQX617S9U5BNCndASrAVy8=
+		LmBV2vDOUrOzOlO17xTTIckffak=
 		</data>
 		<key>Modules/OddSDK.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		DsWE3JrIFIPwvuo+937Dw0py0d0=
+		wJhf3dmPXdD8eCBlGA4RNAKWqN0=
 		</data>
 		<key>Modules/OddSDK.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		t3k3FMdCxmwYIbVY9cP+javUQv4=
+		dcpUP9ktLJPCz8hqxz+bDCXmsbU=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -40,33 +40,82 @@
 	<key>files2</key>
 	<dict>
 		<key>Headers/OddSDK-Swift.h</key>
-		<data>
-		iC/ce/rT3LIiGOXyI69PzCWQjkQ=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			j3mYDrbIz2jRuTbuZXfHFz95RAs=
+			</data>
+			<key>hash2</key>
+			<data>
+			U8imDdFsWaPAx3TNfL0fAeDdewykJbsPYwohcG3w6z4=
+			</data>
+		</dict>
 		<key>Headers/OddSDK.h</key>
-		<data>
-		Dwoxxhej9vwd67mkEuQwcZo8LNY=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			Dwoxxhej9vwd67mkEuQwcZo8LNY=
+			</data>
+			<key>hash2</key>
+			<data>
+			RTZ8Ps882ZiVCgN+Zzq7mmPx/x8tgTts5GI4fN9nWRI=
+			</data>
+		</dict>
 		<key>Modules/OddSDK.swiftmodule/arm.swiftdoc</key>
-		<data>
-		0ecV0QqsHj9rylxBd8ku4zYbSbk=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			MWigoi8hJhTEglMBHB+iSzN2xHU=
+			</data>
+			<key>hash2</key>
+			<data>
+			koKPCDJMEAnrNWgO8U9cRjh/taCHyLp9hT3nNaMW7Wo=
+			</data>
+		</dict>
 		<key>Modules/OddSDK.swiftmodule/arm.swiftmodule</key>
-		<data>
-		1cR5szQX617S9U5BNCndASrAVy8=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			LmBV2vDOUrOzOlO17xTTIckffak=
+			</data>
+			<key>hash2</key>
+			<data>
+			RHgYL7R/qUf8H8fHT/1shV6EBTxV9y83PoykQgT7AmA=
+			</data>
+		</dict>
 		<key>Modules/OddSDK.swiftmodule/arm64.swiftdoc</key>
-		<data>
-		DsWE3JrIFIPwvuo+937Dw0py0d0=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			wJhf3dmPXdD8eCBlGA4RNAKWqN0=
+			</data>
+			<key>hash2</key>
+			<data>
+			1MWnLqzkusFWMt8338+XR5XnLJpwUAeWwwDCwVDAfM4=
+			</data>
+		</dict>
 		<key>Modules/OddSDK.swiftmodule/arm64.swiftmodule</key>
-		<data>
-		t3k3FMdCxmwYIbVY9cP+javUQv4=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			dcpUP9ktLJPCz8hqxz+bDCXmsbU=
+			</data>
+			<key>hash2</key>
+			<data>
+			qV7MbpAC4K55VcHT0Tm5BDj8lmnOAiqTUAR2xVCsUxo=
+			</data>
+		</dict>
 		<key>Modules/module.modulemap</key>
-		<data>
-		T7eZLNs9LvEtletGlmuMn0+nxPw=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			T7eZLNs9LvEtletGlmuMn0+nxPw=
+			</data>
+			<key>hash2</key>
+			<data>
+			vfp75mVobmw5zzFyIUtxNjFvfpw90aYQ2xQYrb7Tehs=
+			</data>
+		</dict>
 	</dict>
 	<key>rules</key>
 	<dict>

@@ -12,13 +12,14 @@ import OddSDK
 class LoadingViewController: UIViewController {
   
   var delegate: HomeViewController?
+  var homeView: OddView?
+  var menuView: OddView?
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    OddContentStore.sharedStore.API.serverMode = .Beta
-    OddLogger.logLevel = .Warn
+    OddContentStore.sharedStore.API.serverMode = .Local
+    OddLogger.logLevel = .Info
     // Do any additional setup after loading the view, typically from a nib.
-    registerForNotifications()
     initializeContentStore()
     // Do any additional setup after loading the view.
   }
@@ -27,40 +28,56 @@ class LoadingViewController: UIViewController {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-  func logContentStoreInfo() {
-    //    let info = OddContentStore.sharedStore.mediaObjectInfo()
-    //    print("*** \(info) ***")
-  }
   
   func configureOnContentLoaded() {
-    logContentStoreInfo()
-    //      self.topics = collections
-    //      dispatch_async(dispatch_get_main_queue(), { () -> Void in
-    //        //        self.collectionView?.reloadData()
-    //      })
-    //display the root view controller with the collection
-    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-      UIView.setAnimationsEnabled(false)
-      self.performSegueWithIdentifier("appInit", sender: self)
-      UIView.setAnimationsEnabled(true)
-    })
-  }
-  
-  func registerForNotifications() {
-    OddLogger.info("Registering For Notifications")
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoadingViewController.configureOnContentLoaded), name: OddConstants.OddContentStoreCompletedInitialLoadNotification, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoadingViewController.showConnectionErrorAlert), name: OddConstants.OddErrorFetchingConfigNotification, object: nil)
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoadingViewController.showConnectionErrorAlert), name: OddConstants.OddErrorFetchingHomeViewNotification, object: nil)
-  }
-  
-  func showConnectionErrorAlert() {
-    
+    let contentStoreInfo = OddContentStore.sharedStore.mediaObjectInfo()
+    print( "\(contentStoreInfo)" )
+    guard let config = OddContentStore.sharedStore.config,
+      let homeViewId = config.idForViewName("homepage"), menuViewId = config.idForViewName("menu") else {
+        OddLogger.error("Error loading config. Unable to configure application")
+        return
+    }
+    OddContentStore.sharedStore.objectsOfType(.View, ids: [homeViewId], include: "featuredMedia,featuredCollections,promotion") { (objects, errors) in
+      if errors != nil {
+        OddLogger.error("Unable to fetch homeview: \(errors!.first?.localizedDescription)")
+        return
+      } else {
+        guard let homeview = objects.first as? OddView else {
+          OddLogger.error("Unable to fetch homeview")
+          return
+        }
+        self.homeView = homeview
+        print("Home Errors: \(errors)")
+        OddContentStore.sharedStore.objectsOfType(.View, ids: [menuViewId], include: "items") { (objects, errors) in
+          if errors != nil {
+            print(errors)
+            OddLogger.error("Unable to fetch menuview: \(errors!.first?.localizedDescription)")
+            return
+          } else {
+            guard let menuview = objects.first as? OddView else {
+              OddLogger.error("Unable to fetch menuview")
+              return
+            }
+            self.menuView = menuview
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+              UIView.setAnimationsEnabled(false)
+              self.performSegueWithIdentifier("appInit", sender: self)
+              UIView.setAnimationsEnabled(true)
+            })
+          }
+        }
+      }
+    }
   }
   
   func initializeContentStore() {
-    OddContentStore.sharedStore.API.authToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2ZXJzaW9uIjoxLCJkZXZpY2VJRCI6IjAzNTc1YmYwLWQ1OGQtMTFlNS05N2I0LTc1MGE2ZGUzYjQ5ZSIsInNjb3BlIjpbImRldmljZSJdLCJpYXQiOjE0NTU3MjM3MzJ9.WzDb0i6jaj1h0O88705BYpO4BCmOvLiERduMM5nn7lI"
+    OddContentStore.sharedStore.API.authToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2ZXJzaW9uIjoxLCJjaGFubmVsIjoibmFzYSIsInBsYXRmb3JtIjoiYXBwbGUtaW9zIiwic2NvcGUiOlsicGxhdGZvcm0iXSwiaWF0IjoxNDYyNDU2NTYxfQ.eWhQKRCviKm578JkV7LPxOSYe-oAHQqFGhLS2d5RC9Q"
     
-    OddContentStore.sharedStore.initialize()
+    OddContentStore.sharedStore.initialize { (success, error) in
+      if success {
+        self.configureOnContentLoaded()
+      }
+    }
   }
   
   
@@ -68,11 +85,12 @@ class LoadingViewController: UIViewController {
   
   // In a storyboard-based application, you will often want to do a little preparation before navigation
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    //      if segue.identifier == "appInit" {
-    //        if let vc = segue.destinationViewController as? RootViewController {
-    //          vc.
-    //        }
-    //      }
+    if segue.identifier == "appInit" {
+      if let vc = segue.destinationViewController as? RootViewController {
+        vc.homeView = self.homeView
+        vc.menuView = self.menuView
+      }
+    }
   }
   
   

@@ -208,7 +208,7 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
   }
   
   override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    let text = section == 0 ? "Courses" : "Videos"
+    let text = section == 0 ? "Collections" : "Videos"
     
     let frame = CGRectMake(0, 0, tableView.frame.width, 29)
     let headerView = UIView(frame: frame)

@@ -51,6 +51,14 @@ struct MenuItem {
     newItem.title = collection.title
     return newItem
   }
+  
+  static func menuItemFromVideo(video: OddVideo) -> MenuItem {
+    var newItem = MenuItem()
+    newItem.objectId = video.id
+    newItem.type = MenuItemType(rawValue: "video")
+    newItem.title = video.title
+    return newItem
+  }
 }
 
 extension UITableViewCell {
@@ -77,6 +85,7 @@ extension UITableViewCell {
 class HomeMenuTableViewController: UITableViewController {
   
   var rootController: RootViewController?
+  var homeMenuView: OddView?
   var menuItems: Array<MenuItem> = []
   var itemSelected: Bool = false
   
@@ -92,16 +101,44 @@ class HomeMenuTableViewController: UITableViewController {
     NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeMenuTableViewController.clearItemSelected), name: "menuAnimationComplete", object: nil)
   }
   
+  func reload() {
+    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+      self.tableView.reloadData()
+    })
+  }
+  
   func configureMenuItems() {
     for menuItemJson in initialMenuData {
       self.menuItems.append(MenuItem.menuItemFromJson(menuItemJson))
     }
-    if let featuredCollections = OddContentStore.sharedStore.featuredCollections {
-      for collection in featuredCollections {
-        self.menuItems.append(MenuItem.menuItemFromCollection(collection))
+    guard let menuView = self.homeMenuView, items = menuView.relationshipNodeWithName("items") else {
+        OddLogger.error("Unable to determine menuItemids")
+        return
+    }
+    
+    if let collectionIds = items.idsOfType(.Collection) {
+      OddContentStore.sharedStore.objectsOfType(.Collection, ids: collectionIds, include: "entities") { (objects, errors) in
+        objects.forEach({ (object) in
+          if let collection = object as? OddMediaObjectCollection {
+            self.menuItems.append(MenuItem.menuItemFromCollection(collection))
+          }
+        })
+        self.reload()
       }
     }
-    self.tableView.reloadData()
+    
+    if let videoIds = items.idsOfType(.Video) {
+      OddContentStore.sharedStore.objectsOfType(.Video, ids: videoIds, include: nil) { (objects, errors) in
+        objects.forEach({ (object) in
+          if let video = object as? OddVideo {
+            self.menuItems.append(MenuItem.menuItemFromVideo(video))
+          }
+        })
+        self.reload()
+      }
+    }
+
+    
   }
   
   func configureNavigationController() {

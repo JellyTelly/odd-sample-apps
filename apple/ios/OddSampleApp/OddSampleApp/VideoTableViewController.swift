@@ -70,6 +70,9 @@ class VideoTableViewController: UITableViewController {
       else {
         if let cell = tableView.dequeueReusableCellWithIdentifier("VideoInfoCell", forIndexPath: indexPath) as? VideoInfoTableViewCell {
           cell.configureWithVideo(video)
+          if let selected = self.selectedVideo where selected.id == video.id {
+            cell.backgroundColor = UIColor.lightGrayColor()
+          }
           return cell
         }
       }
@@ -132,16 +135,12 @@ class VideoTableViewController: UITableViewController {
     if let selected = self.selectedVideo {
       self.relatedContents.append(selected)
     }
-    //remove the selected video from the topics video list here
-    if let related = self.related, video = self.selectedVideo {
-      //      print("Related Count: \(related.objectIds.count)")
-      OddContentStore.sharedStore.fetchObjectsOfType(.Video, ids: related.objectIds, callback: { (objects) -> () in
+    if let related = self.related?.relationshipNodeWithName("entities")?.allIds {
+      OddContentStore.sharedStore.fetchObjectsOfType(.Video, ids: related, include: nil, callback: { (objects, errors) -> () in
         if let contents = objects as? Array<OddVideo> {
           dispatch_async(dispatch_get_main_queue(), { () -> Void in
             for related in contents {
-              if related.id != video.id {
-                self.relatedContents.append(related)
-              }
+              self.relatedContents.append(related)
             }
             self.playerViewCell = nil
             self.reload()

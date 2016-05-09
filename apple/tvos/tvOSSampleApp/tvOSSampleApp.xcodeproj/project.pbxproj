@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02FCC00A1CDBA237005CFE5D /* OddSDKtvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02FCC0081CDBA22A005CFE5D /* OddSDKtvOS.framework */; };
+		02FCC00B1CDBA237005CFE5D /* OddSDKtvOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 02FCC0081CDBA22A005CFE5D /* OddSDKtvOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		132B77661C5AB63000703B21 /* CollectionInfoVideoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B77651C5AB63000703B21 /* CollectionInfoVideoTableViewController.swift */; };
 		132B77681C5AB77E00703B21 /* CollectionInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B77671C5AB77E00703B21 /* CollectionInfoViewController.swift */; };
-		136E36911CD2A18E00714EA4 /* OddSDKtvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 136E36901CD2A18E00714EA4 /* OddSDKtvOS.framework */; };
-		136E36921CD2A18E00714EA4 /* OddSDKtvOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 136E36901CD2A18E00714EA4 /* OddSDKtvOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		137DF7CA1C581592001CBCE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137DF7C91C581592001CBCE0 /* AppDelegate.swift */; };
 		137DF7CF1C581592001CBCE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 137DF7CD1C581592001CBCE0 /* Main.storyboard */; };
 		137DF7D11C581592001CBCE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 137DF7D01C581592001CBCE0 /* Assets.xcassets */; };
@@ -26,7 +26,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				136E36921CD2A18E00714EA4 /* OddSDKtvOS.framework in Embed Frameworks */,
+				02FCC00B1CDBA237005CFE5D /* OddSDKtvOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -34,9 +34,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		02FCC0081CDBA22A005CFE5D /* OddSDKtvOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OddSDKtvOS.framework; sourceTree = "<group>"; };
 		132B77651C5AB63000703B21 /* CollectionInfoVideoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionInfoVideoTableViewController.swift; sourceTree = "<group>"; };
 		132B77671C5AB77E00703B21 /* CollectionInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionInfoViewController.swift; sourceTree = "<group>"; };
-		136E36901CD2A18E00714EA4 /* OddSDKtvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = OddSDKtvOS.framework; path = "/Users/patrickmcconnell/Library/Developer/Xcode/DerivedData/Sample_Apps-hebdhqlacvbemjejtebqdopujxwv/Build/Products/Debug-appletvsimulator/OddSDKtvOS.framework"; sourceTree = "<absolute>"; };
 		137DF7C61C581592001CBCE0 /* tvOSSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvOSSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		137DF7C91C581592001CBCE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		137DF7CE1C581592001CBCE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -52,7 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				136E36911CD2A18E00714EA4 /* OddSDKtvOS.framework in Frameworks */,
+				02FCC00A1CDBA237005CFE5D /* OddSDKtvOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,7 +62,6 @@
 		137DF7BD1C581592001CBCE0 = {
 			isa = PBXGroup;
 			children = (
-				136E36901CD2A18E00714EA4 /* OddSDKtvOS.framework */,
 				137DF7C81C581592001CBCE0 /* tvOSSampleApp */,
 				137DF7C71C581592001CBCE0 /* Products */,
 			);
@@ -79,6 +78,7 @@
 		137DF7C81C581592001CBCE0 /* tvOSSampleApp */ = {
 			isa = PBXGroup;
 			children = (
+				02FCC0081CDBA22A005CFE5D /* OddSDKtvOS.framework */,
 				137DF8201C5AAF16001CBCE0 /* UIView+Parallax.swift */,
 				137DF7C91C581592001CBCE0 /* AppDelegate.swift */,
 				137DF7FD1C5A80E5001CBCE0 /* HomeCollectionViewController.swift */,
@@ -276,6 +276,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/tvOSSampleApp",
 				);
 				INFOPLIST_FILE = tvOSSampleApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -293,6 +294,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/tvOSSampleApp",
 				);
 				INFOPLIST_FILE = tvOSSampleApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -13,10 +13,12 @@ import OddSDK
 class HomeViewController: UIViewController, UINavigationControllerDelegate {
   
   var selectedCollection = OddMediaObjectCollection()
+  var selectedVideo = OddVideo()
   
   var ourContainerView: UIView?
   var menuCloseTapGesture: UITapGestureRecognizer?
   var panGesture: UIPanGestureRecognizer?
+  var homeView: OddView?
   
   var menuButtonIcon = UIImage(named: "hamburger")
   var searchButtonIcon = UIImage(named: "magnify")
@@ -173,11 +175,15 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
     case "homeTableEmbedSegue":
       guard let vc = segue.destinationViewController as? HomeTableViewController else { break }
       vc.homeVC = self
+      vc.homeView = self.homeView
 //      vc.mediaObjectCollection =
       //get the default mediaObjectCollectionHere and stick a player on top with the livestream
     case "showCollectionSegue":
       guard let vc = segue.destinationViewController as? CollectionTableViewController else { break }
       vc.mediaObjectCollection = self.selectedCollection
+    case "showVideoSegue":
+      guard let vc = segue.destinationViewController as? VideoTableViewController else { break }
+      vc.configureWithInfo(self.selectedVideo, related: nil)
     case "showSearchFromButtonSegue" :
       if let vc = segue.destinationViewController as? SearchTableViewController {
         vc.searchField?.becomeFirstResponder()
@@ -194,7 +200,7 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
   // this method dismisses the menu after any subview is animated over the home view
   // helps avoid showing the home view then animating to the subview
   func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
-    if viewController is CollectionTableViewController {
+    if viewController is CollectionTableViewController || viewController is SearchTableViewController || viewController is VideoTableViewController {
       if self.ourContainerView?.frame.origin.x > 0 {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
           if self.ourContainerView?.frame.origin.x > 0 {
@@ -210,6 +216,12 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
       self.selectedCollection = collection
       dispatch_async(dispatch_get_main_queue(), { () -> Void in
         self.performSegueWithIdentifier("showCollectionSegue", sender: self)
+      })
+    }
+    if let video = object as? OddVideo {
+      self.selectedVideo = video
+      dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        self.performSegueWithIdentifier("showVideoSegue", sender: self)
       })
     }
   }
