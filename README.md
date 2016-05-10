@@ -1,5 +1,7 @@
 # odd-sample-apps
 
+[![slack.oddnetworks.com](http://slack.oddnetworks.com/badge.svg)](http://slack.oddnetworks.com)
+
 Sample applications demonstrating how to work with the Odd Networks API on various platforms
 
 ## Apple
