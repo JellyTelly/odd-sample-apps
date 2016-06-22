@@ -44,7 +44,7 @@ Includes two Roku sample applications.
 **Note: due to the nature of Roku's scripting language based SDK the Oddworks Roku SDK is included as a [git-submodule](https://github.com/ingydotnet/git-subrepo). There are two ways to include the required Oddworks SDK files in the Roku sample apps**
 
 - git-subrepo - Install the [git-submodule](https://github.com/ingydotnet/git-subrepo) tool, switch to the root of the sample app folder and use the command (git subrepo commands must be run from the root of the containing repo)
-```git subrepo clone ./roku/brightscript/dev/source/odd-roku-sdk``` and/or ```git subrepo clone ./roku/scenegraph/dev/source/odd-roku-sdk``` depending on which sample app(s) you want to work with. Refer to the [git-submodule documentaton](https://github.com/ingydotnet/git-subrepo) for information on pushing updates or pulling new changes to the SDk
+```git subrepo clone https://github.com/oddnetworks/odd-roku-sdk ./roku/brightscript/dev/source/odd-roku-sdk``` and/or ```git subrepo clone https://github.com/oddnetworks/odd-roku-sdk ./roku/scenegraph/dev/source/odd-roku-sdk``` depending on which sample app(s) you want to work with. Refer to the [git-submodule documentaton](https://github.com/ingydotnet/git-subrepo) for information on pushing updates or pulling new changes to the SDk
 
 - manually download the odd-roku-sdk and copy the files to the odd-roku-sdk folder of the sample project
 
