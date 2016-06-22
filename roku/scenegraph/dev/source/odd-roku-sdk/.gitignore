@@ -1,0 +1,17 @@
+.DS_Store
+sdk
+doc/sdk
+dist/*
+build/*
+brs-component-sample/.DS_Store
+brs-component-sample/sdk
+brs-component-sample/doc/sdk
+brs-component-sample/dist/*
+brs-component-sample/build/*
+brs-component-sample/dev/targets/nasa/config/app_config.json
+scene-graph-sample/.DS_Store
+scene-graph-sample/sdk
+scene-graph-sample/doc/sdk
+scene-graph-sample/dist/*
+scene-graph-sample/build/*
+scene-graph-sample/dev/targets/nasa/config/app_config.json
