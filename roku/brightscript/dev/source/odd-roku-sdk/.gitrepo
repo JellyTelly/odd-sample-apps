@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/oddnetworks/odd-roku-sdk
+	branch = master
+	commit = d1a50f95d410911c87c54b771e900257eca90bff
+	parent = 9ec2f493515feaf394f3757856b6ba103af08639
+	cmdver = 0.3.0
