@@ -1,0 +1,12 @@
+{
+	"settings" : {
+		"appName" : "NASA",
+		"organizationID" : "nasa",
+		"odd_service_endpoint" : "http://192.168.1.100:3000"
+  	},
+  	"auth" : {
+		"code_url" : "/auth/device/code",
+		"token_url" : "/auth/device/token",
+		"deviceAccessToken" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJzaW9uIjoxLCJjaGFubmVsIjoibmFzYSIsInBsYXRmb3JtIjoicm9rdSIsInNjb3BlIjpbInBsYXRmb3JtIl0sImlhdCI6MTQ2NjUzMDEyMn0.d85z8DW8nvnWDX8DRXqDXdO8qmztnBJa45j-KgriIFI"
+	}
+}

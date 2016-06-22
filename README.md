@@ -36,3 +36,25 @@ All Android sample app code is provided in Java
 ### mobile
 
 This application demonstrates connecting to the Oddworks API using the Oddworks SDK for Android. It uses the collections and assets from our sample NASA organization.
+
+## Roku
+
+Includes two Roku sample applications.
+
+**Note: due to the nature of Roku's scripting language based SDK the Oddworks Roku SDK is included as a [git-submodule](https://github.com/ingydotnet/git-subrepo). There are two ways to include the required Oddworks SDK files in the Roku sample apps**
+
+- git-subrepo - Install the [git-submodule](https://github.com/ingydotnet/git-subrepo) tool, switch to the odd-sdk folder and use the command
+```git subrepo pull```
+
+- manually download the odd-roku-sdk and copy the files to the odd-sdk folder of the sample project
+
+**The first method is preferred as you can always pull any updates to the odd-roku-sdk. The second method requires manual management of the SDK dependencies**
+
+
+### brightscript
+
+A sample Roku app written with the Brightscript Component based framework.
+
+### scenegraph
+
+Sample app that built using Roku's new Scene Graph XML components.

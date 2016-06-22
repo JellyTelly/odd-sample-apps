@@ -1,0 +1,59 @@
+{
+  "settings" : {
+    "appName" : "NASA",
+    "organizationID" : "nasa",
+    "livestream" : "false",
+    "outside_section_titles" : ["Featured", "Shows"],
+    "odd_service_endpoint" : "http://your_computers_ip_address_here:3000"
+  },
+  "theme": {
+    "OverhangOffsetSD_X" : "45",
+    "OverhangOffsetSD_Y" : "19",
+    "OverhangLogoSD"  : "pkg:/theme/images/NASA-roku-logo_SD.png",
+
+    "OverhangOffsetHD_X" : "50",
+    "OverhangOffsetHD_Y" : "15",
+    "OverhangLogoHD"  : "pkg:/theme/images/NASA-roku-logo_HD.png",
+
+    "GridScreenLogoOffsetSD_X" : "45",
+    "GridScreenLogoOffsetSD_Y" : "19",
+    "GridScreenOverhangHeightSD" : "70",
+    "GridScreenOverhangSliceSD" : "pkg:/theme/images/NASA-roku-header_search_SD.png",
+    "GridScreenLogoSD"  : "pkg:/theme/images/NASA-roku-logo_SD.png",
+    "GridScreenFocusBorderSD"  : "pkg:/theme/images/Grid_Focus_Border_SD.png",
+    "GridScreenBorderOffsetSD" : "(-5,-5)",
+
+    "GridScreenLogoOffsetHD_X" : "50",
+    "GridScreenLogoOffsetHD_Y" : "15",
+    "GridScreenOverhangHeightHD" : "121",
+    "GridScreenOverhangSliceHD" : "pkg:/theme/images/NASA-roku-header_search_HD.png",
+    "GridScreenLogoHD"  : "pkg:/theme/images/NASA-roku-logo_HD.png",
+    "GridScreenFocusBorderHD"  : "pkg:/theme/images/Grid_Focus_Border_HD.png",
+    "GridScreenBorderOffsetHD" : "(-5,-5)",
+
+		"PosterScreenLine1Text" : "#FFFFFF",
+
+    "SpringboardTitleText" : "#FFFFFF",
+    "SpringboardSynopsisColor" : "#FFFFFF",
+
+    "BackgroundColor" : "#2D2D2D",
+    "GridScreenBackgroundColor" : "#2D2D2D",
+
+    "ButtonMenuNormalText" : "#FFFFFF"
+  },
+  "themeAlternate" : {
+    "themeSearchOverhangSlice" : {
+      "OverhangSliceSD" : "pkg:/theme/images/NASA-roku-header_search_SD.png",
+      "OverhangSliceHD" : "pkg:/theme/images/NASA-roku-header_search_HD.png"
+    },
+    "themeBlankOverhangSlice" : {
+      "OverhangSliceSD" : "pkg:/theme/images/NASA-roku-header-SD.png",
+      "OverhangSliceHD" : "pkg:/theme/images/NASA-roku-header-HD.png"
+    }
+  },
+  "auth" : {
+    "code_url" : "/auth/device/code",
+    "token_url" : "/auth/device/token",
+    "deviceAccessToken" : "your_roku_x_access_token_here"
+  }
+}

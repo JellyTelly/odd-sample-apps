@@ -1,0 +1,11 @@
+title=NASA
+subtitle=NASA
+mm_icon_focus_hd=pkg:/theme/images/NASA-roku-store-HD-focused-336x210.jpg
+mm_icon_focus_sd=pkg:/theme/images/NASA-roku-store-SD-focused-248x140.jpg
+splash_screen_sd=pkg:/theme/images/NASA-roku-splash_SD.jpg
+splash_screen_hd=pkg:/theme/images/NASA-roku-splash_HD.jpg
+splash_min_time=3000
+major_version=2
+minor_version=0
+build_version=00011
+bs_libs_required=roku_ads_lib
