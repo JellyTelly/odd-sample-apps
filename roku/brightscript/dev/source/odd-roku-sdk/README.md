@@ -2,7 +2,8 @@
 
 [![slack.oddnetworks.com](http://slack.oddnetworks.com/badge.svg)](http://slack.oddnetworks.com)
 
-This repo contains the necessary Brightscript source files to work with the Oddworks plaftform with your Roku app. The SDK supports both Brightscript Component and Scenegraph based Roku apps.
+This sample application requires the [odd-roku-sdk](https://github.com/oddnetworks/odd-roku-sdk) files in order to run correctly. We reccomend using the [git-submodule](https://github.com/ingydotnet/git-subrepo) tool to clone the sdk repo.
+
 
 ### Installation
 
