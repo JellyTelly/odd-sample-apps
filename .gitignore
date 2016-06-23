@@ -64,3 +64,9 @@ fastlane/screenshots
 
 OddSDK.framework
 OddSDKtvOS.framework
+
+#roku
+roku/brightscript/build
+roku/brightscript/dev/source/odd-roku-sdk
+roku/scenegraph/build
+roku/scenegraph/dev/source/odd-roku-sdk
