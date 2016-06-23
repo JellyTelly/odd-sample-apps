@@ -66,17 +66,5 @@ OddSDK.framework
 OddSDKtvOS.framework
 
 #roku
-roku/brightscript/build
-roku/brightscript/dev/source/odd-roku-sdk/
-roku/scenegraph/build
-roku/scenegraph/dev/source/odd-roku-sdk/
-oddVideo.brs
-oddPromotion.brs
-oddConfig.brs
-oddSearch.brs
-oddDeepLink.brs
-oddLiveStream.brs
-oddAuth.brs
-oddUtils.brs
-oddVideoCollection.brs
-roku/brightscript/dev/targets/nasa/config/app_config.json
+odd-roku-sdk
+app-config.json
