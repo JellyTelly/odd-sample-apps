@@ -39,8 +39,8 @@ Function videoCollectionFromJson(video_collection_json As Object) As Object
   video_collection.Url = video_collection_json.links.self
 
   video_collection.Title = video_collection_attributes.title
-  video_collection.SDImage = video_collection_attributes.images.aspect16x9
-  video_collection.HDImage = video_collection_attributes.images.aspect16x9
+  video_collection.SDImage = video_collection_attributes.images[0].url
+  video_collection.HDImage = video_collection_attributes.images[0].url
   video_collection.description = video_collection_attributes.description
 
   video_collection.loadItemList = load_item_list

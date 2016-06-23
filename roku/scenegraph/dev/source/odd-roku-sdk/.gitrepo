@@ -6,6 +6,6 @@
 [subrepo]
 	remote = https://github.com/oddnetworks/odd-roku-sdk
 	branch = master
-	commit = d1a50f95d410911c87c54b771e900257eca90bff
-	parent = 156da6735ad9e7f8944654e56a93e3b5db22b2a7
+	commit = d5b5968865fc1ed17157159cad18d650b26e99db
+	parent = 411ffc1b2ec34c6858bbf1c9506865fdf14207de
 	cmdver = 0.3.0

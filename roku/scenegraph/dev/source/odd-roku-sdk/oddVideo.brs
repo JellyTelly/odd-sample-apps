@@ -12,10 +12,10 @@ Function videoFromJson(video_json As Object, collection_id As Dynamic) As Object
   video.Type             = "video"
   video.ContentId        = video_id
   video.Title            = video_attributes.title
-  video.SDImage          = video_attributes.images.aspect16x9
-  video.HDImage          = video_attributes.images.aspect16x9
-  video.SDImage_Detail   = video_attributes.images.aspect16x9
-  video.HDImage_Detail   = video_attributes.images.aspect16x9
+  video.SDImage          = video_attributes.images[0].url
+  video.HDImage          = video_attributes.images[0].url
+  video.SDImage_Detail   = video_attributes.images[0].url
+  video.HDImage_Detail   = video_attributes.images[0].url
   video.Synopsis         = video_attributes.description
   video.ContentQuality   = video_attributes.contentQuality
   video.StreamFormat     = video_attributes.streamFormat
