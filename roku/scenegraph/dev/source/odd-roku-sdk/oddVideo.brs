@@ -111,3 +111,21 @@ Function videoForGridScreen(video As Object) As Object
   return grid_video
 
 End Function
+
+' SCENE GRAPH
+Function videoForHomeSceneScreen(video As Object) As Object
+  settings = AppSettings()
+
+  homepage_video = {}
+  homepage_video["title"] = video.Title
+  homepage_video["description"] = video.Synopsis
+  homepage_video["url"] =  video.StreamURL
+  homepage_video["streamFormat"] =  "mp4"
+  'Displaying app name here for now'
+  homepage_video["releaseDate"] = settings.appName
+  homepage_video.HDPosterUrl = video.HDImage
+  homepage_video.hdBackgroundImageUrl = video.HDImage
+
+  return homepage_video
+
+End Function
