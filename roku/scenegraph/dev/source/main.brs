@@ -1,4 +1,4 @@
-' ********** Copyright 2015 Roku Corp.  All Rights Reserved. ********** 
+' ********** Copyright 2015 Roku Corp.  All Rights Reserved. **********
 
 Sub RunUserInterface()
     screen = CreateObject("roSGScreen")
@@ -27,7 +27,7 @@ Sub RunUserInterface()
         print "------------------"
         print "msg = "; msg
     end while
-    
+
     if screen <> invalid then
         screen.Close()
         screen = invalid

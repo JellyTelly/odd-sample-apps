@@ -1,4 +1,4 @@
-' ********** Copyright 2016 Roku Corp.  All Rights Reserved. ********** 
+' ********** Copyright 2016 Roku Corp.  All Rights Reserved. **********
  'setting top interfaces
 Sub Init()
     m.top.Title             = m.top.findNode("Title")
@@ -10,12 +10,11 @@ End Sub
 ' All fields population
 Sub OnContentChanged()
     item = m.top.content
-
     title = item.title.toStr()
     if title <> invalid then
         m.top.Title.text = title.toStr()
     end if
-    
+
     value = item.description
     if value <> invalid then
         if value.toStr() <> "" then
@@ -24,7 +23,7 @@ Sub OnContentChanged()
             m.top.Description.text = "No description"
         end if
     end if
-    
+
     value = item.ReleaseDate
     if value <> invalid then
         if value <> ""

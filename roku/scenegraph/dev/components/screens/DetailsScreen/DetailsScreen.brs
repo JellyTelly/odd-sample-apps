@@ -1,6 +1,6 @@
-' ********** Copyright 2016 Roku Corp.  All Rights Reserved. ********** 
+' ********** Copyright 2016 Roku Corp.  All Rights Reserved. **********
  ' inits details screen
- ' sets all observers 
+ ' sets all observers
  ' configures buttons for Details screen
 Function Init()
     ? "[DetailsScreen] init"
@@ -62,12 +62,15 @@ End Sub
 Sub OnVideoPlayerStateChange()
     if m.videoPlayer.state = "error"
         ' error handling
+				print "error"
         m.videoPlayer.visible = false
     else if m.videoPlayer.state = "playing"
         ' curPos = m.videoPlayer.position
         ' RegWrite(m.description, curPos.toStr())
         ' playback handling
+				print "playing"
     else if m.videoPlayer.state = "finished"
+				print "finished"
         m.videoPlayer.visible = false
     end if
 End Sub
@@ -95,6 +98,7 @@ Sub OnContentChange()
     m.description.Description.width = "770"
     m.videoPlayer.content   = m.top.content
     m.top.streamUrl         = m.top.content.url
+		print "content = "; m.top.streamUrl
     m.poster.uri            = m.top.content.hdBackgroundImageUrl
     m.background.uri            = m.top.content.hdBackgroundImageUrl
 End Sub

@@ -1,7 +1,7 @@
-' ********** Copyright 2016 Roku Corp.  All Rights Reserved. ********** 
+' ********** Copyright 2016 Roku Corp.  All Rights Reserved. **********
  ' inits grid screen
  ' creates all children
- ' sets all observers 
+ ' sets all observers
 Function Init()
     ' listen on port 8089
     ? "[HomeScene] Init"
@@ -14,10 +14,10 @@ Function Init()
 
     ' Observer to handle Item selection on RowList inside GridScreen (alias="GridScreen.rowItemSelected")
     m.top.observeField("rowItemSelected", "OnRowItemSelected")
-    
+
     ' loading indicator starts at initializatio of channel
     m.loadingIndicator = m.top.findNode("loadingIndicator")
-End Function 
+End Function
 
 ' if content set, focus on GridScreen
 Function OnChangeContent()
