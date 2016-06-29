@@ -98,9 +98,8 @@ Sub OnContentChange()
     m.description.Description.width = "770"
     m.videoPlayer.content   = m.top.content
     m.top.streamUrl         = m.top.content.url
-		print "content = "; m.top.streamUrl
     m.poster.uri            = m.top.content.hdBackgroundImageUrl
-    m.background.uri            = m.top.content.hdBackgroundImageUrl
+    m.background.uri        = m.top.content.hdBackgroundImageUrl
 End Sub
 
 '///////////////////////////////////////////'

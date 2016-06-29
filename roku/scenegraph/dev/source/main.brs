@@ -32,10 +32,12 @@ Sub RunUserInterface()
         screen.Close()
         screen = invalid
     end if
+
 End Sub
 
 Function LoadOddHomeScreenContent() As Dynamic
-  settings = AppSettings()
+	settings = AppSettings()
+
   home_view_response = oddApiGetRequest(OddConfig().home_view_endpoint + "?include=promotion,featuredMedia,featuredCollections")
 
   if home_view_response = invalid
@@ -48,8 +50,18 @@ Function LoadOddHomeScreenContent() As Dynamic
   global_config = GetGlobalAA()
   global_config["deep_link"] = home_view_json
 
-  home_view = []
+	print "USER ID: "; GetUserID()
+	print "SESSION ID: "; GenerateNewSessionId()
 
+	print "HOME LOADED"
+	' print userAccessToken()
+	' print OddConfig().analytics
+	if OddConfig().analytics.appInit.enabled = true
+		oddApiPostAppInitMetric()
+		' contentInfo = { id: "1234abcd", title: "A video", type: "video", thumbnail: "http://someimage.png"}
+		' oddApiPostMetric(OddConfig().analytics.videoPlay.action, contentInfo,  invalid)
+	end if
+  home_view = []
 
   if home_view_json.data.relationships.featuredMedia.data <> invalid
     featured_media_entry = home_view_json.data.relationships.featuredMedia.data
@@ -97,8 +109,8 @@ End Function
 
 Function ParseXMLContent(list As Object)
     RowItems = createObject("RoSGNode","ContentNode")
-    print list
-    print list[0].Title
+    ' print list
+    ' print list[0].Title
     for each rowAA in list
     'for index = 0 to 1
         row = createObject("RoSGNode","ContentNode")
