@@ -4,6 +4,7 @@ Sub RunUserInterface()
     screen = CreateObject("roSGScreen")
     scene = screen.CreateScene("HomeScene")
     port = CreateObject("roMessagePort")
+		playheadPort = CreateObject("roMessagePort")
     screen.SetMessagePort(port)
     screen.Show()
 
@@ -22,10 +23,44 @@ Sub RunUserInterface()
     homeContent = LoadOddHomeScreenContent()
     scene.gridContent = ParseXMLContent(homeContent)
 
+		' this locates the videoPlayer in the details screen in order to track play events
+		scene.findNode("DetailsScreen").findNode("VideoPlayer").observeField("state", port)
+		' register for a notification when the video player playhead position changes
+		scene.findNode("DetailsScreen").findNode("VideoPlayer").observeField("position", port)
+		' read the config for how often to send playhead events
+		interval = OddConfig().analytics.videoPlaying.interval / 1000
+		' set the video player to report position info at the desired interval
+		scene.findNode("DetailsScreen").findNode("VideoPlayer").notificationInterval = 5
+		' watch the details screen for any changes in the currently selected video
+		scene.findNode("DetailsScreen").observeField("content", port)
+
+		m.scene = scene
     while true
         msg = wait(0, port)
-        print "------------------"
-        print "msg = "; msg
+				msgType = type(msg)
+				if msgType = "roSGNodeEvent"
+					if msg.getNode() = "VideoPlayer"
+
+						if msg.getField() = "state"
+							' this message is telling us the video player changed state so record an event
+							OnVideoPlayerStateChange(msg.getData())
+						else if msg.getField() = "position"
+							' this message is a notification of the current videos playhead position
+							' we store it for later reporting
+							OnVideoPlayheadPositionChange(msg.getData())
+						end if
+
+
+
+					end if
+      	end if
+
+        ' print "------------------"
+				' print "msg"; msg
+				' print "node "; msg.getNode()
+				'	print "field name "; msg.getField()
+				' print "data "; msg.getData()
+
     end while
 
     if screen <> invalid then
@@ -34,6 +69,58 @@ Sub RunUserInterface()
     end if
 
 End Sub
+
+Sub contentChange()
+	print "contentChange"
+end Sub
+
+Sub OnVideoPlayerStateChange(data)
+	content = m.scene.findNode("DetailsScreen").getField("content")
+	' print "************** OnVideoPlayerStateChange ******************"
+	contentInfo = { id: content.Id, title: content.Title, type: content.Type, thumbnail: content.HDPOSTERURL}
+	statAttribs = { timeElapsed: 0, videoDuration: content.Length, errorMessage: invalid}
+
+	print "CONTENT: "; contentInfo
+	print "STATS: "; statAttribs
+
+	print data
+	if data = "buffering"
+		if OddConfig().analytics.videoLoad.enabled
+			print "video:load"
+			action = OddConfig().analytics.videoLoad.action
+			oddApiPostMetric(action, contentInfo, statAttribs)
+		end if
+	else if data = "playing"
+		if OddConfig().analytics.videoPlay.enabled
+			print "video:play"
+			action = OddConfig().analytics.videoPlay.action
+			oddApiPostMetric(action, contentInfo, statAttribs)
+		end if
+	else if data = "stopped"
+		if OddConfig().analytics.videoStop.enabled
+			print "video:stop"
+			action = OddConfig().analytics.videoStop.action
+			oddApiPostMetric(action, contentInfo, statAttribs)
+		end if
+	end if
+end Sub
+
+Sub OnVideoPlayheadPositionChange(elapsed)
+print "OnVideoPlayheadPositionChange"
+	if OddConfig().analytics.videoPlaying.enabled = false
+		return
+	end if
+
+	content = m.scene.findNode("DetailsScreen").getField("content")
+	contentInfo = { id: content.Id, title: content.Title, type: content.Type, thumbnail: content.HDPOSTERURL}
+	statAttribs = { timeElapsed: elapsed, videoDuration: content.Length, errorMessage: invalid}
+
+	print "CONTENT: "; contentInfo
+	print "STATS: "; statAttribs
+
+	action = OddConfig().analytics.videoPlaying.action
+	oddApiPostMetric(action, contentInfo, statAttribs)
+end Sub
 
 Function LoadOddHomeScreenContent() As Dynamic
 	settings = AppSettings()
@@ -54,8 +141,7 @@ Function LoadOddHomeScreenContent() As Dynamic
 	print "SESSION ID: "; GenerateNewSessionId()
 
 	print "HOME LOADED"
-	' print userAccessToken()
-	' print OddConfig().analytics
+
 	if OddConfig().analytics.appInit.enabled = true
 		oddApiPostAppInitMetric()
 		' contentInfo = { id: "1234abcd", title: "A video", type: "video", thumbnail: "http://someimage.png"}
@@ -100,6 +186,11 @@ Function LoadOddHomeScreenContent() As Dynamic
       home_view.push(featuredCollectionItem)
     end for
   end if
+
+	if home_view <> invalid
+		contentInfo = { id: "1234abcd", title: "Home Screen", type: "view", thumbnail: "http://someimage.png"}
+		oddApiPostMetric(OddConfig().analytics.viewLoad.action, contentInfo,  invalid)
+	endif
 
   return home_view
 

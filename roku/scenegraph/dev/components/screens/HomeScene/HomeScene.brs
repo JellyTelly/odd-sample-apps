@@ -5,7 +5,7 @@
 Function Init()
     ' listen on port 8089
     ? "[HomeScene] Init"
-
+		
     ' GridScreen node with RowList
     m.gridScreen = m.top.findNode("GridScreen")
 

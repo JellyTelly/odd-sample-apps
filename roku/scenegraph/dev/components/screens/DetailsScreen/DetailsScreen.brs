@@ -5,7 +5,7 @@
 Function Init()
     ? "[DetailsScreen] init"
 
-    m.top.observeField("visible", "onVisibleChange")
+		m.top.observeField("visible", "onVisibleChange")
     m.top.observeField("focusedChild", "OnFocusedChildChange")
 
     m.buttons           =   m.top.findNode("Buttons")
@@ -14,8 +14,7 @@ Function Init()
     m.description       =   m.top.findNode("Description")
     m.background        =   m.top.findNode("Background")
 
-
-    ' create buttons
+		' create buttons
     result = []
     buttonOptions = ["Play"]
 
@@ -35,6 +34,10 @@ Sub onVisibleChange()
     if m.top.visible = true then
         m.buttons.jumpToItem = 0
         m.buttons.setFocus(true)
+
+				contentInfo = { id: m.top.content.Id, title: m.top.content.Title, type: m.top.content.Type, thumbnail: m.top.content.HDPOSTERURL}
+				statAttribs = { timeElapsed: 0, videoDuration: m.top.content.length, errorMessage: invalid}
+				print "LOADED VIDEO"
     else
         m.videoPlayer.visible = false
         m.videoPlayer.control = "stop"
@@ -79,11 +82,13 @@ End Sub
 Sub onItemSelected()
     ' first button is Play
     if m.top.itemSelected = 0
+		print"PLAY VIDEO 0"
         m.videoPlayer.visible = true
         m.videoPlayer.setFocus(true)
         m.videoPlayer.control = "play"
         m.videoPlayer.observeField("state", "OnVideoPlayerStateChange")
     else if m.top.itemSelected = 1
+		print"PLAY VIDEO 1"
         m.videoPlayer.visible = true
         m.videoPlayer.setFocus(true)
         m.videoPlayer.seek = regread(m.description.title)
@@ -94,10 +99,12 @@ End Sub
 
 ' Content change handler
 Sub OnContentChange()
+print "CONTENT TYPE: "; type(m.top.content)
+
     m.description.content   = m.top.content
     m.description.Description.width = "770"
     m.videoPlayer.content   = m.top.content
-    m.top.streamUrl         = m.top.content.url
+    ' m.top.streamUrl         = m.top.content.url
     m.poster.uri            = m.top.content.hdBackgroundImageUrl
     m.background.uri        = m.top.content.hdBackgroundImageUrl
 End Sub
