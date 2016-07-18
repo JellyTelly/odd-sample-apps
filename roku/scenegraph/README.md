@@ -7,7 +7,7 @@
 - Make sure your Roku is set up for development: https://blog.roku.com/developer/2016/02/04/developer-setup-guide/ Take note of your device password, you will need it later
 - Create a copy this file: ```dev/targets/nasa/config/app_config.sample.json``` in the same folder
 - Rename the copy to ```app_config.json```
-- Add your roku x-access-token (found in the logs where you are running oddworks) to 'deviceAccessToken' and change the 'odd_service_endpoint' to your computer's IP address
+- Add your roku x-access-token (found in the logs where you are running oddworks) to 'deviceAccessToken' and change the 'oddServiceEndpoint' to your computer's IP address
 
 #####2) Install using makefile:
 ```

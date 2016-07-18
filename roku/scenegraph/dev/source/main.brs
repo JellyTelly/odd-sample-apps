@@ -4,7 +4,6 @@ Sub RunUserInterface()
     screen = CreateObject("roSGScreen")
     scene = screen.CreateScene("HomeScene")
     port = CreateObject("roMessagePort")
-		playheadPort = CreateObject("roMessagePort")
     screen.SetMessagePort(port)
     screen.Show()
 
@@ -13,7 +12,7 @@ Sub RunUserInterface()
     ' initialize global OddConfig
     odd_config = invalid
     while odd_config = invalid
-      initOddConfig(settings.odd_service_endpoint)
+      initOddConfig(settings.oddServiceEndpoint)
       odd_config = OddConfig()
       if odd_config = invalid
         return ' back, close app
@@ -31,9 +30,7 @@ Sub RunUserInterface()
 		interval = OddConfig().analytics.videoPlaying.interval / 1000
 		' set the video player to report position info at the desired interval
 		scene.findNode("DetailsScreen").findNode("VideoPlayer").notificationInterval = 5
-		' watch the details screen for any changes in the currently selected video
-		scene.findNode("DetailsScreen").observeField("content", port)
-
+		
 		m.scene = scene
     while true
         msg = wait(0, port)
@@ -151,7 +148,7 @@ Function LoadOddHomeScreenContent() As Dynamic
 
   if home_view_json.data.relationships.featuredMedia.data <> invalid
     featured_media_entry = home_view_json.data.relationships.featuredMedia.data
-    urlString$ = settings.odd_service_endpoint + "/" + "video" + "s/" + featured_media_entry.id
+    urlString$ = settings.oddServiceEndpoint + "/" + "video" + "s/" + featured_media_entry.id
     video_response = oddApiGetRequest(urlString$)
     video = ParseJson(video_response)
     featuredVideo = videoFromJson(video.data, featured_media_entry.id)
@@ -166,7 +163,7 @@ Function LoadOddHomeScreenContent() As Dynamic
 
   if home_view_json.data.relationships.featuredCollections <> invalid
     featured_collection_data = home_view_json.data.relationships.featuredCollections.data
-    featured_collection_response = oddApiGetRequest(settings.odd_service_endpoint + "/" + "collection" + "s/" + featured_collection_data.id + "?include=entities")
+    featured_collection_response = oddApiGetRequest(settings.oddServiceEndpoint + "/" + "collection" + "s/" + featured_collection_data.id + "?include=entities")
     featured_collection = ParseJson(featured_collection_response)
     featured_collection_contents_data = featured_collection.data.relationships.entities.data
     for itemIndex=0 To featured_collection_contents_data.count() - 1 Step + 1
