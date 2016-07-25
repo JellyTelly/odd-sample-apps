@@ -1,5 +1,6 @@
 sub init()
     m.image = m.top.findNode("image")
+    m.spinnerLogo = m.top.findNode("spinnerLogo")
     m.image.observeField("loadStatus", "omImageLoadStatusChange")
     m.text = m.top.findNode("text")
     m.rotationAnimation = m.top.findNode("rotationAnimation")
@@ -63,6 +64,9 @@ sub updateLayout()
     m.loadingGroup.translation = [(componentWidth - loadingGroupWidth) / 2, (componentHeight - loadingGroupHeight) / 2]
     m.image.translation = [(loadingGroupWidth - m.image.width) / 2, 0]
     m.text.translation = [0, m.image.height + m.top.spacing]
+    
+    ' center spinnerLogo in the spinner
+    m.spinnerLogo.translation = [(getParentWidth() / 2)  - (m.spinnerLogo.width / 2), m.top.spacing]
 end sub
 
 

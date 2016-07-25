@@ -34,12 +34,15 @@ Sample:
 <!--     If specified, width of a spinning image, otherwise bitmap width is used. You can specify only imageWidth
          and imageHeight will be calculated accordingly to image's aspect ratio. Make sure image fits into component or
          it will be downscaled. -->
+    <field id="spinnerLogoUri" type="string" alias="spinnerLogo.uri" value="pkg:/images/spinnerLogo.png"/>
     <field id="imageWidth" type="float" onChange="onImageWidthChange"/>
 <!--     If specified, height of a spinning image, otherwise bitmap height is used. You can specify only imageHeight
          and imageWidth will be calculated accordingly to image's aspect ratio. Make sure image fits into component or
          it will be downscaled. -->
+    <field id="spinnerLogoWidth" type="float" alias="spinnerLogo.width"/>     
     <field id="imageHeight" type="float" onChange="onImageHeightChange"/>
 <!--     If true, animate image in imageUri field clockwise, otherwise counter-clockwise. -->
+    <field id="spinnerLogoHeight" type="float" alias="spinnerLogo.height"/>
     <field id="clockwise" type="bool" value="true" onChange="changeRotationDirection"/>
 <!--     If set, time in seconds it take for one complete image rotation.  -->
     <field id="spinInterval" type="time" alias="rotationAnimation.duration" value="3"/>
@@ -100,6 +103,10 @@ Sample:
                         fieldToInterp="image.rotation"/>
                 </Animation>
             </Poster>
+
+            <Poster 
+                id="spinnerLogo" />
+            
             <Label
                 id="text"
                 horizAlign="center"/>

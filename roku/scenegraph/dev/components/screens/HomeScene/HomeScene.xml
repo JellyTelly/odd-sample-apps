@@ -29,8 +29,8 @@
         <Poster
             translation="[79, 36]"
             uri="pkg:/images/overhangLogo.png"
-            width="156"
-            height="49"  />
+            width="400"
+            height="75"  />
 
         <!-- Details screen with Play button -->
         <DetailsScreen
@@ -40,6 +40,9 @@
         <LoadingIndicator
 		      id="loadingIndicator"
 		      imageUri="pkg:/components/screens/LoadingIndicator/loader.png"
+              spinnerLogoUri="pkg:/images/spinnerLogo.png"
+              spinnerLogoHeight="64"
+              spinnerLogoWidth="64"
 		      clockwise="true"
 		      spinInterval="2"
 		      fadeInterval="0.5"
@@ -54,6 +57,5 @@
 		      font="font:SmallBoldSystemFont"
 		      backgroundColor="0x551A8B"
 		      backgroundOpacity="0"/>
-
     </children>
 </component>
