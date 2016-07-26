@@ -8,6 +8,8 @@ Sub RunUserInterface()
     screen.Show()
 
     settings = initAppConfig()
+    theme = AppTheme()
+    print "Theme: "; theme
 
     ' initialize global OddConfig
     odd_config = invalid
@@ -30,7 +32,19 @@ Sub RunUserInterface()
 		interval = OddConfig().analytics.videoPlaying.interval / 1000
 		' set the video player to report position info at the desired interval
 		scene.findNode("DetailsScreen").findNode("VideoPlayer").notificationInterval = 5
-		
+
+    hud = scene.findNode("DetailsScreen").findNode("HudRectangle")
+    hud.color = AppTheme().hudBackgroundColor
+    
+    hudDescription = scene.findNode("DetailsScreen").findNode("Description")
+    title = hudDescription.findNode("Title")
+    releaseData = hudDescription.findNode("ReleaseDate")
+    description = hudDescription.findNode("DescriptionText")
+
+    title.color = AppTheme().hudTitleTextColor
+    releaseData.color = AppTheme().hudReleaseDateTextColor
+    description.color = AppTheme().hudDescriptionTextColor
+
 		m.scene = scene
     while true
         msg = wait(0, port)
