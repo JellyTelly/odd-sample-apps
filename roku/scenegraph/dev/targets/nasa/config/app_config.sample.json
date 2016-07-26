@@ -1,0 +1,19 @@
+{
+	"settings": {
+		"appName": "NASA",
+		"organizationID": "nasa",
+		"oddServiceEndpoint": "http://device.oddworks.io",
+		"oddEventsEndpoint": "http://analytics.oddworks.io"
+	},
+	"auth": {
+		"code_url": "/auth/device/code",
+		"token_url": "/auth/device/token",
+		"deviceAccessToken": "ENTER TOKEN HERE"
+	},
+	"theme": {
+		"hudBackgroundColor": "0x000000FF",
+		"hudTitleTextColor": "0xFFFFFFFF",
+		"hudReleaseDateTextColor": "0xFFFFFFFF",
+		"hudDescriptionTextColor": "0xFFFFFFFF"
+	}
+}
