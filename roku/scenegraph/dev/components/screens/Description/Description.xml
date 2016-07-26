@@ -41,7 +41,7 @@
             text=""/>
         
         <Label
-            id="Description"
+            id="DescriptionText"
             color="0xFFFFFF"
             wrap="true"
             width="553"

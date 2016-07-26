@@ -2,7 +2,7 @@
  'setting top interfaces
 Sub Init()
     m.top.Title             = m.top.findNode("Title")
-    m.top.Description       = m.top.findNode("Description")
+    m.top.Description       = m.top.findNode("DescriptionText")
     m.top.ReleaseDate       = m.top.findNode("ReleaseDate")
 End Sub
 

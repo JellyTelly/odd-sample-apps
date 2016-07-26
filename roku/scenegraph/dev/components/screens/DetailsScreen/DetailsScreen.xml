@@ -50,7 +50,7 @@
 
         <!-- Black hud at bottom of the Details Screen -->
         <Rectangle
-            id="testRectangle"
+            id="HudRectangle"
             color="0x000000FF"
             width="1280"
             height="251"

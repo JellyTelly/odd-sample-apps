@@ -13,7 +13,6 @@ Function Init()
     m.poster            =   m.top.findNode("Poster")
     m.description       =   m.top.findNode("Description")
     m.background        =   m.top.findNode("Background")
-
 		' create buttons
     result = []
     buttonOptions = ["Play"]
@@ -25,6 +24,7 @@ Function Init()
     for each button in buttonOptions
         result.push({title : button})
     end for
+
     m.buttons.content = ContentList2SimpleNode(result)
 End Function
 
