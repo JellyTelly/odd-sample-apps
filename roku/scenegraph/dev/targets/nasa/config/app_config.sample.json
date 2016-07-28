@@ -14,6 +14,10 @@
 		"hudBackgroundColor": "0x000000FF",
 		"hudTitleTextColor": "0xFFFFFFFF",
 		"hudReleaseDateTextColor": "0xFFFFFFFF",
-		"hudDescriptionTextColor": "0xFFFFFFFF"
+		"hudDescriptionTextColor": "0xFFFFFFFF",
+		"homeTitleTextColor": "0xFFFF00FF",
+		"homeReleaseDateTextColor": "0x009999FF",
+		"homeDescriptionTextColor": "0x993300FF",
+		"gridHeaderTextColor": "0x0033CCFF"
 	}
 }

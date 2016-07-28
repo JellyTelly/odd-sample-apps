@@ -8,8 +8,9 @@ Sub RunUserInterface()
     screen.Show()
 
     settings = initAppConfig()
-    theme = AppTheme()
-    print "Theme: "; theme
+    
+    ' theme = AppTheme()
+    ' print "Theme: "; theme
 
     ' initialize global OddConfig
     odd_config = invalid
@@ -20,6 +21,8 @@ Sub RunUserInterface()
         return ' back, close app
       end if
     end while
+
+    ApplyTheme(scene)
 
     homeContent = LoadOddHomeScreenContent()
     scene.gridContent = ParseXMLContent(homeContent)
@@ -33,7 +36,7 @@ Sub RunUserInterface()
 		' set the video player to report position info at the desired interval
 		scene.findNode("DetailsScreen").findNode("VideoPlayer").notificationInterval = 5
 
-    ApplyTheme(scene)
+    
     
 		m.scene = scene
     while true
@@ -50,18 +53,13 @@ Sub RunUserInterface()
 							' we store it for later reporting
 							OnVideoPlayheadPositionChange(msg.getData())
 						end if
-
-
-
 					end if
       	end if
-
         ' print "------------------"
 				' print "msg"; msg
 				' print "node "; msg.getNode()
 				'	print "field name "; msg.getField()
 				' print "data "; msg.getData()
-
     end while
 
     if screen <> invalid then
@@ -71,17 +69,30 @@ Sub RunUserInterface()
 End Sub
 
 Sub ApplyTheme(scene)
+    homeDescription = scene.findNode("Description")
+
+    homeTitleText = homeDescription.findNode("Title")
+    homeReleaseDateText = homeDescription.findNode("ReleaseDate")
+    homeDescriptionText = homeDescription.findNode("DescriptionText")
+
+    homeTitleText.color = AppTheme().homeTitleTextColor
+    homeReleaseDateText.color = AppTheme().homeReleaseDateTextColor
+    homeDescriptionText.color = AppTheme().homeDescriptionTextColor
+
+    grid = scene.findNode("GridScreen").findNode("RowList")
+    grid.rowLabelColor = AppTheme().gridHeaderTextColor
+
     hud = scene.findNode("DetailsScreen").findNode("HudRectangle")
     hud.color = AppTheme().hudBackgroundColor
     
     hudDescription = scene.findNode("DetailsScreen").findNode("Description")
-    title = hudDescription.findNode("Title")
-    releaseData = hudDescription.findNode("ReleaseDate")
-    description = hudDescription.findNode("DescriptionText")
+    hudTitleText = hudDescription.findNode("Title")
+    hudReleaseDateText = hudDescription.findNode("ReleaseDate")
+    hudDescriptionText = hudDescription.findNode("DescriptionText")
 
-    title.color = AppTheme().hudTitleTextColor
-    releaseData.color = AppTheme().hudReleaseDateTextColor
-    description.color = AppTheme().hudDescriptionTextColor
+    hudTitleText.color = AppTheme().hudTitleTextColor
+    hudReleaseDateText.color = AppTheme().hudReleaseDateTextColor
+    hudDescriptionText.color = AppTheme().hudDescriptionTextColor
 End Sub
 
 Sub OnVideoPlayerStateChange(data)
