@@ -33,18 +33,8 @@ Sub RunUserInterface()
 		' set the video player to report position info at the desired interval
 		scene.findNode("DetailsScreen").findNode("VideoPlayer").notificationInterval = 5
 
-    hud = scene.findNode("DetailsScreen").findNode("HudRectangle")
-    hud.color = AppTheme().hudBackgroundColor
+    ApplyTheme(scene)
     
-    hudDescription = scene.findNode("DetailsScreen").findNode("Description")
-    title = hudDescription.findNode("Title")
-    releaseData = hudDescription.findNode("ReleaseDate")
-    description = hudDescription.findNode("DescriptionText")
-
-    title.color = AppTheme().hudTitleTextColor
-    releaseData.color = AppTheme().hudReleaseDateTextColor
-    description.color = AppTheme().hudDescriptionTextColor
-
 		m.scene = scene
     while true
         msg = wait(0, port)
@@ -78,12 +68,21 @@ Sub RunUserInterface()
         screen.Close()
         screen = invalid
     end if
-
 End Sub
 
-Sub contentChange()
-	print "contentChange"
-end Sub
+Sub ApplyTheme(scene)
+    hud = scene.findNode("DetailsScreen").findNode("HudRectangle")
+    hud.color = AppTheme().hudBackgroundColor
+    
+    hudDescription = scene.findNode("DetailsScreen").findNode("Description")
+    title = hudDescription.findNode("Title")
+    releaseData = hudDescription.findNode("ReleaseDate")
+    description = hudDescription.findNode("DescriptionText")
+
+    title.color = AppTheme().hudTitleTextColor
+    releaseData.color = AppTheme().hudReleaseDateTextColor
+    description.color = AppTheme().hudDescriptionTextColor
+End Sub
 
 Sub OnVideoPlayerStateChange(data)
 	content = m.scene.findNode("DetailsScreen").getField("content")
@@ -206,7 +205,6 @@ Function LoadOddHomeScreenContent() As Dynamic
   return home_view
 
 End Function
-
 
 
 Function ParseXMLContent(list As Object)
