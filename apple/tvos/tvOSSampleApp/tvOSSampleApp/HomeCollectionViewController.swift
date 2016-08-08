@@ -135,10 +135,16 @@ class HomeCollectionViewController: UICollectionViewController {
     OddLogger.logLevel = .Info
     
     OddContentStore.sharedStore.API.serverMode = .Local
-    /* Please visit https://www.oddnetworks.com/getstarted/ to get the demo app authentication token
-    this line is required to allow access to the API. Once you have entered your authToken uncomment 
-    to continue*/
-    OddContentStore.sharedStore.API.authToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2ZXJzaW9uIjoxLCJjaGFubmVsIjoibmFzYSIsInBsYXRmb3JtIjoiYXBwbGUtdHYiLCJzY29wZSI6WyJwbGF0Zm9ybSJdLCJpYXQiOjE0NjE4NzU5OTV9.uMJ6ckqkI283bhUrYJL30-8R6mzYBqa0H5gDNqqMaDY"
+    /*
+    If you are running your own Oddworks server the server will provide tokens for each channel
+    and device you have configured when it launches. Paste the apple-tv token below. 
+    
+    If you are using an Oddworks hosted server the token will be provided for you.
+     
+    This line is required to allow access to the API. Once you have entered your authToken uncomment
+    to continue
+     */
+    OddContentStore.sharedStore.API.authToken = "<enter your token here>"
 
     
     OddContentStore.sharedStore.initialize { (success, error) in

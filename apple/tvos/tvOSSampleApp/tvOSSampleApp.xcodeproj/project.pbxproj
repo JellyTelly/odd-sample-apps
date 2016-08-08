@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02FCC00A1CDBA237005CFE5D /* OddSDKtvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02FCC0081CDBA22A005CFE5D /* OddSDKtvOS.framework */; };
-		02FCC00B1CDBA237005CFE5D /* OddSDKtvOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 02FCC0081CDBA22A005CFE5D /* OddSDKtvOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		132B77661C5AB63000703B21 /* CollectionInfoVideoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B77651C5AB63000703B21 /* CollectionInfoVideoTableViewController.swift */; };
 		132B77681C5AB77E00703B21 /* CollectionInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B77671C5AB77E00703B21 /* CollectionInfoViewController.swift */; };
+		1357C6101D58DE0C0049ED31 /* OddSDKtvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1357C60F1D58DE0C0049ED31 /* OddSDKtvOS.framework */; };
+		1357C6111D58DE0C0049ED31 /* OddSDKtvOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1357C60F1D58DE0C0049ED31 /* OddSDKtvOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		137DF7CA1C581592001CBCE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137DF7C91C581592001CBCE0 /* AppDelegate.swift */; };
 		137DF7CF1C581592001CBCE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 137DF7CD1C581592001CBCE0 /* Main.storyboard */; };
 		137DF7D11C581592001CBCE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 137DF7D01C581592001CBCE0 /* Assets.xcassets */; };
@@ -20,13 +20,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		137DF7DB1C58178C001CBCE0 /* Embed Frameworks */ = {
+		1357C6121D58DE0C0049ED31 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				02FCC00B1CDBA237005CFE5D /* OddSDKtvOS.framework in Embed Frameworks */,
+				1357C6111D58DE0C0049ED31 /* OddSDKtvOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -37,6 +37,7 @@
 		02FCC0081CDBA22A005CFE5D /* OddSDKtvOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OddSDKtvOS.framework; sourceTree = "<group>"; };
 		132B77651C5AB63000703B21 /* CollectionInfoVideoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionInfoVideoTableViewController.swift; sourceTree = "<group>"; };
 		132B77671C5AB77E00703B21 /* CollectionInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionInfoViewController.swift; sourceTree = "<group>"; };
+		1357C60F1D58DE0C0049ED31 /* OddSDKtvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = OddSDKtvOS.framework; path = "/Users/patrickmcconnell/Library/Developer/Xcode/DerivedData/Sample_Apps-hebdhqlacvbemjejtebqdopujxwv/Build/Products/Debug-appletvsimulator/OddSDKtvOS.framework"; sourceTree = "<absolute>"; };
 		137DF7C61C581592001CBCE0 /* tvOSSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvOSSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		137DF7C91C581592001CBCE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		137DF7CE1C581592001CBCE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -52,7 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02FCC00A1CDBA237005CFE5D /* OddSDKtvOS.framework in Frameworks */,
+				1357C6101D58DE0C0049ED31 /* OddSDKtvOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +63,7 @@
 		137DF7BD1C581592001CBCE0 = {
 			isa = PBXGroup;
 			children = (
+				1357C60F1D58DE0C0049ED31 /* OddSDKtvOS.framework */,
 				137DF7C81C581592001CBCE0 /* tvOSSampleApp */,
 				137DF7C71C581592001CBCE0 /* Products */,
 			);
@@ -102,7 +104,7 @@
 				137DF7C21C581592001CBCE0 /* Sources */,
 				137DF7C31C581592001CBCE0 /* Frameworks */,
 				137DF7C41C581592001CBCE0 /* Resources */,
-				137DF7DB1C58178C001CBCE0 /* Embed Frameworks */,
+				1357C6121D58DE0C0049ED31 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -120,11 +122,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Patrick McConnell";
 				TargetAttributes = {
 					137DF7C51C581592001CBCE0 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 5PB75JEVQ3;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -199,8 +203,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
@@ -243,8 +249,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
@@ -272,7 +280,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				DEVELOPMENT_TEAM = 5PB75JEVQ3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -282,6 +290,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.oddworks.tvOSSampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -290,7 +299,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				DEVELOPMENT_TEAM = 5PB75JEVQ3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -300,6 +309,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.oddworks.tvOSSampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
