@@ -24,8 +24,6 @@
 		0208154B1C73ACEC00B1A2EC /* VideoInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0208154A1C73ACEC00B1A2EC /* VideoInfoTableViewCell.swift */; };
 		0208154D1C73AD6700B1A2EC /* CustomSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0208154C1C73AD6700B1A2EC /* CustomSeparator.swift */; };
 		0208154F1C73B8FF00B1A2EC /* MenuSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0208154E1C73B8FF00B1A2EC /* MenuSearchCell.swift */; };
-		020815501C73BCCC00B1A2EC /* OddSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0208151B1C73740400B1A2EC /* OddSDK.framework */; };
-		020815511C73BCCC00B1A2EC /* OddSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0208151B1C73740400B1A2EC /* OddSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		022E93D31C74CEB4007E01A2 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022E93D21C74CEB4007E01A2 /* HomeTableViewController.swift */; };
 		022E93D51C74CEC0007E01A2 /* CollectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022E93D41C74CEC0007E01A2 /* CollectionTableViewController.swift */; };
 		022E93D71C74CEC8007E01A2 /* VideoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022E93D61C74CEC8007E01A2 /* VideoTableViewController.swift */; };
@@ -37,16 +35,18 @@
 		028628AB1C727F460078AF8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 028628AA1C727F460078AF8A /* Assets.xcassets */; };
 		028628AE1C727F460078AF8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 028628AC1C727F460078AF8A /* LaunchScreen.storyboard */; };
 		02FCC00D1CDBD704005CFE5D /* ContentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FCC00C1CDBD704005CFE5D /* ContentHelper.swift */; };
+		13B385C31D58E2D800E9383F /* OddSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13B385C21D58E2D800E9383F /* OddSDK.framework */; };
+		13B385C41D58E2D800E9383F /* OddSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 13B385C21D58E2D800E9383F /* OddSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		020815521C73BCCC00B1A2EC /* Embed Frameworks */ = {
+		13B385C51D58E2D800E9383F /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				020815511C73BCCC00B1A2EC /* OddSDK.framework in Embed Frameworks */,
+				13B385C41D58E2D800E9383F /* OddSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,6 +85,7 @@
 		028628AD1C727F460078AF8A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		028628AF1C727F460078AF8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02FCC00C1CDBD704005CFE5D /* ContentHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentHelper.swift; sourceTree = "<group>"; };
+		13B385C21D58E2D800E9383F /* OddSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = OddSDK.framework; path = "/Users/patrickmcconnell/Library/Developer/Xcode/DerivedData/Sample_iOS_App-bfkltlxoctbqdpbedkvavgnhcvru/Build/Products/Debug-iphonesimulator/OddSDK.framework"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				020815501C73BCCC00B1A2EC /* OddSDK.framework in Frameworks */,
+				13B385C31D58E2D800E9383F /* OddSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,6 +182,7 @@
 		028628971C727F460078AF8A = {
 			isa = PBXGroup;
 			children = (
+				13B385C21D58E2D800E9383F /* OddSDK.framework */,
 				028628A21C727F460078AF8A /* OddSampleApp */,
 				028628A11C727F460078AF8A /* Products */,
 			);
@@ -218,7 +220,7 @@
 				0286289C1C727F460078AF8A /* Sources */,
 				0286289D1C727F460078AF8A /* Frameworks */,
 				0286289E1C727F460078AF8A /* Resources */,
-				020815521C73BCCC00B1A2EC /* Embed Frameworks */,
+				13B385C51D58E2D800E9383F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -236,11 +238,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Odd Networks";
 				TargetAttributes = {
 					0286289F1C727F460078AF8A = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 5PB75JEVQ3;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -343,8 +347,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -387,8 +393,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -415,6 +423,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5PB75JEVQ3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/OddSampleApp",
@@ -423,6 +432,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.oddworks.sample.OddSampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -431,6 +441,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5PB75JEVQ3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/OddSampleApp",
@@ -439,6 +450,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.oddworks.sample.OddSampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

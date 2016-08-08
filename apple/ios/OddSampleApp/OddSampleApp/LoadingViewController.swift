@@ -71,7 +71,16 @@ class LoadingViewController: UIViewController {
   }
   
   func initializeContentStore() {
-    OddContentStore.sharedStore.API.authToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2ZXJzaW9uIjoxLCJjaGFubmVsIjoibmFzYSIsInBsYXRmb3JtIjoiYXBwbGUtaW9zIiwic2NvcGUiOlsicGxhdGZvcm0iXSwiaWF0IjoxNDYyNDU2NTYxfQ.eWhQKRCviKm578JkV7LPxOSYe-oAHQqFGhLS2d5RC9Q"
+    /*
+     If you are running your own Oddworks server the server will provide tokens for each channel
+     and device you have configured when it launches. Paste the apple-tv token below.
+     
+     If you are using an Oddworks hosted server the token will be provided for you.
+     
+     This line is required to allow access to the API. Once you have entered your authToken uncomment
+     to continue
+     */
+    OddContentStore.sharedStore.API.authToken = "<your auth token>"
     
     OddContentStore.sharedStore.initialize { (success, error) in
       if success {

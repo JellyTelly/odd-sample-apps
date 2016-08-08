@@ -144,7 +144,7 @@ class HomeCollectionViewController: UICollectionViewController {
     This line is required to allow access to the API. Once you have entered your authToken uncomment
     to continue
      */
-    OddContentStore.sharedStore.API.authToken = "<enter your token here>"
+    OddContentStore.sharedStore.API.authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGFubmVsIjoibmFzYSIsInBsYXRmb3JtIjoiYXBwbGUtdHYiLCJ1c2VyIjoiYThkY2I5MmMtYjVhMC00ZWI1LTg0ZDItZWU4ZmQ3ZDUxZmFmIiwiaWF0IjoxNDcwMjQyMDQ1LCJhdWQiOlsicGxhdGZvcm0iXSwiaXNzIjoidXJuOm9kZHdvcmtzIn0.X3gbXqW4qe7ShXFCqtzIT1cqZ7SfOTkgBWC0VFzL0n4"
 
     
     OddContentStore.sharedStore.initialize { (success, error) in
