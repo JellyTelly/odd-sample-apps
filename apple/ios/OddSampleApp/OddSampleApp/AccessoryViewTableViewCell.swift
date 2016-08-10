@@ -15,11 +15,11 @@ class AccessoryViewTableViewCell: UITableViewCell {
   
   var topic: OddMediaObjectCollection?
 
-  func configureForTopic(collection: OddMediaObjectCollection) {
-    self.backgroundColor = UIColor.clearColor()
-    self.selectionStyle = .None
+  func configureForTopic(_ collection: OddMediaObjectCollection) {
+    self.backgroundColor = UIColor.clear
+    self.selectionStyle = .none
     collection.thumbnail { (image) -> Void in
-      dispatch_async(dispatch_get_main_queue(), { () -> Void in
+      DispatchQueue.main.async(execute: { () -> Void in
         self.thumbnailImageView.image = image
       })
     }

@@ -15,15 +15,15 @@ class MediaInfoTableViewCell: UITableViewCell {
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var notesLabel: UILabel!
   
-  func configureWithCollection(collection: OddMediaObjectCollection) {
-    self.backgroundColor = UIColor.clearColor()
+  func configureWithCollection(_ collection: OddMediaObjectCollection) {
+    self.backgroundColor = UIColor.clear
     self.titleLabel.text = collection.title
     self.notesLabel.text = collection.notes
     self.titleLabel.textColor = ThemeManager.defaultManager.currentTheme().tableViewCellTitleLabelColor
     self.notesLabel.textColor = ThemeManager.defaultManager.currentTheme().tableViewCellTextLabelColor
-    self.selectionStyle = .Gray
+    self.selectionStyle = .gray
     collection.thumbnail { (image) -> Void in
-      dispatch_async(dispatch_get_main_queue(), { () -> Void in
+      DispatchQueue.main.async(execute: { () -> Void in
         self.thumbnailImageView.image = image
       })
     }

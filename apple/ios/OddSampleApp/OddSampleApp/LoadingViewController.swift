@@ -17,8 +17,8 @@ class LoadingViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    OddContentStore.sharedStore.API.serverMode = .Local
-    OddLogger.logLevel = .Info
+    OddContentStore.sharedStore.API.serverMode = .local
+    OddLogger.logLevel = .info
     // Do any additional setup after loading the view, typically from a nib.
     initializeContentStore()
     // Do any additional setup after loading the view.
@@ -33,11 +33,11 @@ class LoadingViewController: UIViewController {
     let contentStoreInfo = OddContentStore.sharedStore.mediaObjectInfo()
     print( "\(contentStoreInfo)" )
     guard let config = OddContentStore.sharedStore.config,
-      let homeViewId = config.idForViewName("homepage"), menuViewId = config.idForViewName("menu") else {
+      let homeViewId = config.idForViewName("homepage"), let menuViewId = config.idForViewName("menu") else {
         OddLogger.error("Error loading config. Unable to configure application")
         return
     }
-    OddContentStore.sharedStore.objectsOfType(.View, ids: [homeViewId], include: "featuredMedia,featuredCollections,promotion") { (objects, errors) in
+    OddContentStore.sharedStore.objectsOfType(.view, ids: [homeViewId], include: "featuredMedia,featuredCollections,promotion") { (objects, errors) in
       if errors != nil {
         OddLogger.error("Unable to fetch homeview: \(errors!.first?.localizedDescription)")
         return
@@ -48,7 +48,7 @@ class LoadingViewController: UIViewController {
         }
         self.homeView = homeview
         print("Home Errors: \(errors)")
-        OddContentStore.sharedStore.objectsOfType(.View, ids: [menuViewId], include: "items") { (objects, errors) in
+        OddContentStore.sharedStore.objectsOfType(.view, ids: [menuViewId], include: "items") { (objects, errors) in
           if errors != nil {
             print(errors)
             OddLogger.error("Unable to fetch menuview: \(errors!.first?.localizedDescription)")
@@ -59,9 +59,9 @@ class LoadingViewController: UIViewController {
               return
             }
             self.menuView = menuview
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
               UIView.setAnimationsEnabled(false)
-              self.performSegueWithIdentifier("appInit", sender: self)
+              self.performSegue(withIdentifier: "appInit", sender: self)
               UIView.setAnimationsEnabled(true)
             })
           }
@@ -80,7 +80,8 @@ class LoadingViewController: UIViewController {
      This line is required to allow access to the API. Once you have entered your authToken uncomment
      to continue
      */
-    OddContentStore.sharedStore.API.authToken = "<your auth token>"
+   // OddContentStore.sharedStore.API.authToken = "<your auth token>"
+    OddContentStore.sharedStore.API.authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGFubmVsIjoibmFzYSIsInBsYXRmb3JtIjoiYXBwbGUtaW9zIiwidXNlciI6ImFkNjI3MGVmLTVjYTUtNGMxOS1iNDU4LTkxYmFlOGU0OTAwYSIsImlhdCI6MTQ3MDc1OTc5NSwiYXVkIjpbInBsYXRmb3JtIl0sImlzcyI6InVybjpvZGR3b3JrcyJ9.llj5k4Y7t_6mihFdcXFlWqc-HWWNbrvEZ0l-nUFcR6E"
     
     OddContentStore.sharedStore.initialize { (success, error) in
       if success {
@@ -93,9 +94,9 @@ class LoadingViewController: UIViewController {
   // MARK: - Navigation
   
   // In a storyboard-based application, you will often want to do a little preparation before navigation
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "appInit" {
-      if let vc = segue.destinationViewController as? RootViewController {
+      if let vc = segue.destination as? RootViewController {
         vc.homeView = self.homeView
         vc.menuView = self.menuView
       }

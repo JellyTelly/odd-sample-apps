@@ -52,7 +52,7 @@ class OddMediaOverlayView: UIView {
   func configureThumbnailOverlay() {
     
     let thumbnailView = UIImageView(frame: self.bounds)
-    thumbnailView.contentMode = .ScaleAspectFill
+    thumbnailView.contentMode = .scaleAspectFill
     thumbnailView.image = thumbnail
     thumbnailView.accessibilityIdentifier = thumbnail?.accessibilityIdentifier
     
@@ -60,10 +60,10 @@ class OddMediaOverlayView: UIView {
     
     let playButtonContainerSize: CGFloat = 70
     
-    let playButtonContainer = UIView(frame: CGRectMake(0, 0, playButtonContainerSize, playButtonContainerSize))
+    let playButtonContainer = UIView(frame: CGRect(x: 0, y: 0, width: playButtonContainerSize, height: playButtonContainerSize))
     playButtonContainer.layer.cornerRadius = playButtonContainerSize/2;
     playButtonContainer.layer.masksToBounds = true
-    playButtonContainer.backgroundColor = UIColor.whiteColor()
+    playButtonContainer.backgroundColor = UIColor.white
     playButtonContainer.alpha = 0.3
     playButtonContainer.center = self.center
     
@@ -86,12 +86,12 @@ class OddMediaOverlayView: UIView {
     
     if let header = self.liveStreamHeaderView {
       header.alpha = 0.5
-      playerContainer.bringSubviewToFront(header)
+      playerContainer.bringSubview(toFront: header)
     }
   }
   
   func hideThumbnailOverlay() {
-    self.videoOverlayView?.hidden = true
-    self.userInteractionEnabled = false
+    self.videoOverlayView?.isHidden = true
+    self.isUserInteractionEnabled = false
   }
 }

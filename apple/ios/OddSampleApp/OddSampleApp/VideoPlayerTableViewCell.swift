@@ -24,26 +24,26 @@ class VideoPlayerTableViewCell: UITableViewCell {
   var playerConfigured: Bool = false
   var relatedShow = true
   
-  func configureWithVideo(video: OddVideo, showRelated: Bool) {
+  func configureWithVideo(_ video: OddVideo, showRelated: Bool) {
     if !showRelated {
       self.relatedShow = false
-      self.relatedView.hidden = true
-      self.relatedTitleLabel.hidden = true
+      self.relatedView.isHidden = true
+      self.relatedTitleLabel.isHidden = true
     }
     self.video = video
-    self.backgroundColor = UIColor.clearColor()
+    self.backgroundColor = UIColor.clear
     self.titleLabel.text = video.title
     self.titleLabel.textColor = ThemeManager.defaultManager.currentTheme().tableViewCellTitleLabelColor
-    titleLabel.backgroundColor = UIColor.clearColor()
+    titleLabel.backgroundColor = UIColor.clear
     
     self.descriptionLabel.text = video.notes
     self.descriptionLabel.textColor = ThemeManager.defaultManager.currentTheme().tableViewCellTextLabelColor
     self.relatedTitleLabel.textColor = ThemeManager.defaultManager.currentTheme().tableViewSectionHeaderTextLabelColor
-    self.relatedTitleLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+    self.relatedTitleLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyleHeadline)
     self.relatedView.backgroundColor = ThemeManager.defaultManager.currentTheme().tableViewSectionHeaderBackgroundColor
-    self.selectionStyle = UITableViewCellSelectionStyle.None
-    self.userInteractionEnabled = true
-    self.backgroundColor = UIColor.clearColor()
+    self.selectionStyle = UITableViewCellSelectionStyle.none
+    self.isUserInteractionEnabled = true
+    self.backgroundColor = UIColor.clear
     configureMediaPlayer()
   }
   
@@ -54,7 +54,7 @@ class VideoPlayerTableViewCell: UITableViewCell {
   }
   
   func configureMediaPlayer() {
-    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+    DispatchQueue.main.async(execute: { () -> Void in
       if self.relatedShow {
         for view in self.playerView.subviews {
           view.removeFromSuperview()
@@ -69,7 +69,7 @@ class VideoPlayerTableViewCell: UITableViewCell {
   
   func configureForNativePlayer() {
     if let video = self.video,
-      urlString = video.urlString {
+      let urlString = video.urlString {
         if !playerConfigured || relatedShow {
           playerConfigured = true
           //        video.thumbnail({ (image) -> () in

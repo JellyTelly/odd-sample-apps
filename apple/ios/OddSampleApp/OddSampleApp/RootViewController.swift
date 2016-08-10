@@ -34,19 +34,19 @@ class RootViewController: UIViewController {
   // MARK: - Navigation
   
   // In a storyboard-based application, you will often want to do a little preparation before navigation
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "homeViewEmbed" {
       print("homeViewEmbed")
-      if let navCon = segue.destinationViewController as? UINavigationController,
-        vc = navCon.topViewController as? HomeViewController {
+      if let navCon = segue.destination as? UINavigationController,
+        let vc = navCon.topViewController as? HomeViewController {
           vc.ourContainerView = homeViewContainer
           self.homeViewController = vc
           vc.homeView = self.homeView
       }
     } else if segue.identifier == "homeMenuEmbedSegue" {
       print("homeMenuEmbed")
-      if let navCon = segue.destinationViewController as? UINavigationController,
-        vc = navCon.topViewController as? HomeMenuTableViewController {
+      if let navCon = segue.destination as? UINavigationController,
+        let vc = navCon.topViewController as? HomeMenuTableViewController {
           vc.rootController = self
           vc.homeMenuView = self.menuView
       }
@@ -56,8 +56,8 @@ class RootViewController: UIViewController {
   
   // MARK: - Utility
   
-  func selectedMediaObjectIdFromMenu(mediaObjectId: String?) {
-    if let id = mediaObjectId, mediaObject = OddContentStore.sharedStore.mediaObjectWithId(id) {
+  func selectedMediaObjectIdFromMenu(_ mediaObjectId: String?) {
+    if let id = mediaObjectId, let mediaObject = OddContentStore.sharedStore.mediaObjectWithId(id) {
       self.homeViewController?.selectedMediaObject(mediaObject)
     }
   }

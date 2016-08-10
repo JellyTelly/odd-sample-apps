@@ -27,7 +27,7 @@ class OddAVPlayer: AVPlayerViewController {
   
   //Media Data
   var mediaObject: OddMediaObject?
-  var url: NSURL?
+  var url: URL?
   var thumbnail: UIImage?
   var video: OddVideo?
   
@@ -42,12 +42,12 @@ class OddAVPlayer: AVPlayerViewController {
       self.liveStreamHeaderView = headerView
     }
     if let url = NSURL(string: url) {
-      self.url = url
+      self.url = url as URL
     }
     
     configureMediaPlayer()
     
-    let options = NSKeyValueObservingOptions([.New, .Old])
+    let options = NSKeyValueObservingOptions([.new, .old])
     self.contentOverlayView?.addObserver(self, forKeyPath: "bounds", options: options, context: &myContext)
   }
   
@@ -68,9 +68,9 @@ class OddAVPlayer: AVPlayerViewController {
   func prepareMediaData() {
     var player: AVPlayer?
     if let url = self.url {
-      player = AVPlayer(URL: url)
+      player = AVPlayer(url: url)
       if let player = player {
-        player.addPeriodicTimeObserverForInterval(CMTimeMakeWithSeconds(1, 1), queue: dispatch_get_main_queue()) { (CMTime) -> Void in
+        player.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(1, 1), queue: DispatchQueue.main) { (CMTime) -> Void in
           self.checkPlayerStatus()
         }
         self.player = player
@@ -80,9 +80,9 @@ class OddAVPlayer: AVPlayerViewController {
   }
   
   func checkPlayerStatus() {
-    if let player = self.player, header = self.liveStreamHeaderView {
+    if let player = self.player, let header = self.liveStreamHeaderView {
       let alpha: CGFloat = player.rate != 0 && player.error == nil ? 0 : 0.5
-      UIView.animateWithDuration(0.25, animations: { () -> Void in
+      UIView.animate(withDuration: 0.25, animations: { () -> Void in
         header.alpha = alpha
       })
     }
@@ -103,23 +103,23 @@ class OddAVPlayer: AVPlayerViewController {
   // MARK: - Fullscreen transitions
   
   func rotateToPortrait() {
-    let value = UIInterfaceOrientation.Portrait.rawValue
-    UIDevice.currentDevice().setValue(value, forKey: "orientation")
+    let value = UIInterfaceOrientation.portrait.rawValue
+    UIDevice.current.setValue(value, forKey: "orientation")
   }
   
-  override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+  override func observeValue(forKeyPath keyPath: String?, of object: AnyObject?, change: [NSKeyValueChangeKey : AnyObject]?, context: UnsafeMutablePointer<Void>?) {
     if context == &myContext {
       if keyPath == "bounds" {
         if let theChange = change,
-          oldValue = theChange[NSKeyValueChangeOldKey],
-          newValue = theChange[NSKeyValueChangeNewKey] {
-            let oldBounds: CGRect = oldValue.CGRectValue
-            let newBounds: CGRect = newValue.CGRectValue
-            let wasFullScreen = CGRectEqualToRect(oldBounds, UIScreen.mainScreen().bounds)
-            let isFullscreen = CGRectEqualToRect(newBounds, UIScreen.mainScreen().bounds)
+          let oldValue = theChange[NSKeyValueChangeKey.oldKey],
+          let newValue = theChange[NSKeyValueChangeKey.newKey] {
+            let oldBounds: CGRect = oldValue.cgRectValue
+            let newBounds: CGRect = newValue.cgRectValue
+            let wasFullScreen = oldBounds.equalTo(UIScreen.main.bounds)
+            let isFullscreen = newBounds.equalTo(UIScreen.main.bounds)
             
             if isFullscreen && !wasFullScreen {
-              if CGRectEqualToRect(oldBounds, CGRectMake(0,0, newBounds.size.height, newBounds.size.width)) {
+              if oldBounds.equalTo(CGRect(x: 0,y: 0, width: newBounds.size.height, height: newBounds.size.width)) {
                 print("ROTATED FULLSCREEN")
               } else {
                 print("ENTERED FULLSCREEN")
@@ -131,7 +131,7 @@ class OddAVPlayer: AVPlayerViewController {
         }
       }
     } else {
-      super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+      super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
     }
   }
   

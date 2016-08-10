@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension CAGradientLayer {
-  class func gradientLayerForBounds(bounds: CGRect) -> CAGradientLayer {
+  class func gradientLayerForBounds(_ bounds: CGRect) -> CAGradientLayer {
     
     //    let edgeColor = UIColor(red:0.17, green:0.05, blue:0.36, alpha:1)
     //    let centerColor =  UIColor(red:0.35, green:0.13, blue:0.65, alpha:1)
@@ -24,13 +24,13 @@ extension CAGradientLayer {
     
     layer.startPoint = CGPoint(x: 0, y: 0.5)
     layer.endPoint = CGPoint(x: 1, y: 0.5)
-    let colors: [CGColorRef] = [
-      edgeColor.CGColor,
-      centerColor.CGColor,
-      edgeColor.CGColor
+    let colors: [CGColor] = [
+      edgeColor.cgColor,
+      centerColor.cgColor,
+      edgeColor.cgColor
     ]
     layer.colors = colors
-    layer.opaque = false
+    layer.isOpaque = false
     layer.locations = [0.0, 0.5, 1.0]
     
     return layer
@@ -42,28 +42,28 @@ class GradientNavigationController: UINavigationController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.navigationBar.translucent = false
+    self.navigationBar.isTranslucent = false
     //    self.navigationBar.tintColor = UIColor(red:0.37, green:0.2, blue:0.67, alpha:1)
     self.navigationBar.tintColor = ThemeManager.defaultManager.currentTheme().primaryNavigationBarTintColor
-    let fontDictionary = [ NSForegroundColorAttributeName:UIColor.whiteColor() ]
+    let fontDictionary = [ NSForegroundColorAttributeName:UIColor.white ]
     self.navigationBar.titleTextAttributes = fontDictionary
     resetImage()
   }
   
   func resetImage() {
-    self.navigationBar.setBackgroundImage(imageLayerForGradientBackground(), forBarMetrics: UIBarMetrics.Default)
+    self.navigationBar.setBackgroundImage(imageLayerForGradientBackground(), for: UIBarMetrics.default)
   }
   
   private func imageLayerForGradientBackground() -> UIImage {
     
     var updatedFrame = self.navigationBar.bounds
     // take into account the status bar
-    let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
+    let statusBarHeight = UIApplication.shared.statusBarFrame.height
     
     updatedFrame.size.height += statusBarHeight
     let layer = CAGradientLayer.gradientLayerForBounds(updatedFrame)
     UIGraphicsBeginImageContext(layer.bounds.size)
-    layer.renderInContext(UIGraphicsGetCurrentContext()!)
+    layer.render(in: UIGraphicsGetCurrentContext()!)
     
     //    var imageLayer = CALayer()
     //

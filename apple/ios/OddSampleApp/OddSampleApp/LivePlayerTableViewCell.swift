@@ -18,15 +18,15 @@ class LivePlayerTableViewCell: UITableViewCell {
   var video: OddVideo?
   var playerConfigured: Bool = false
   
-  func configureWithVideo(video: OddVideo) {
+  func configureWithVideo(_ video: OddVideo) {
     self.video = video
-    self.titleLabel.backgroundColor = UIColor.clearColor()
+    self.titleLabel.backgroundColor = UIColor.clear
     self.titleLabel.text = video.title
     self.titleLabel.textColor = ThemeManager.defaultManager.currentTheme().playerTitleOverlayTextLabelColor
-    self.titleLabel.backgroundColor = UIColor.clearColor()
-    self.backgroundColor = UIColor.clearColor()
-    self.selectionStyle = UITableViewCellSelectionStyle.None
-    self.userInteractionEnabled = true
+    self.titleLabel.backgroundColor = UIColor.clear
+    self.backgroundColor = UIColor.clear
+    self.selectionStyle = UITableViewCellSelectionStyle.none
+    self.isUserInteractionEnabled = true
     configureMediaPlayer()
   }
   
@@ -37,7 +37,7 @@ class LivePlayerTableViewCell: UITableViewCell {
   }
   
   func configureMediaPlayer() {
-    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+    DispatchQueue.main.async(execute: { () -> Void in
       for view in self.playerView.subviews {
         view.removeFromSuperview()
       }
@@ -49,7 +49,7 @@ class LivePlayerTableViewCell: UITableViewCell {
   
   func configureForNativePlayer() {
     if let video = self.video,
-      urlString = video.urlString {
+      let urlString = video.urlString {
         self.moviePlayer = OddAVPlayer(video: video, playerView: self.playerView, media: video, url: urlString, thumbnail: nil, liveStreamHeaderView: nil)
     }
   }

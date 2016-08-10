@@ -10,15 +10,15 @@ import UIKit
 
 class MenuSearchCell: UITableViewCell {
   
-  func configureTextFieldElements(textField: UITextField) {
+  func configureTextFieldElements(_ textField: UITextField) {
     
     let iconSize: CGFloat = 18
     
-    let container = UIView(frame: CGRectMake(4, 0, 28, 18))
-    let magnifyView = UIImageView(frame: CGRectMake(0, 0, iconSize, iconSize))
+    let container = UIView(frame: CGRect(x: 4, y: 0, width: 28, height: 18))
+    let magnifyView = UIImageView(frame: CGRect(x: 0, y: 0, width: iconSize, height: iconSize))
     magnifyView.image = UIImage(named: "magnify")
-    magnifyView.image = magnifyView.image!.imageWithRenderingMode(.AlwaysTemplate)
-    magnifyView.tintColor = .lightGrayColor()
+    magnifyView.image = magnifyView.image!.withRenderingMode(.alwaysTemplate)
+    magnifyView.tintColor = .lightGray
     
     container.addSubview(magnifyView)
     magnifyView.center.x += 4
@@ -26,7 +26,7 @@ class MenuSearchCell: UITableViewCell {
     
     textField.leftView = container
     
-    textField.leftViewMode = .Always
+    textField.leftViewMode = .always
   }
   
   
@@ -34,19 +34,19 @@ class MenuSearchCell: UITableViewCell {
     //    cell.textLabel?.text = "Search"
     //    cell.imageView?.image = UIImage(named: "magnify")
     let width = self.contentView.frame.width
-    let searchField = UITextField(frame: CGRectMake(16, 8, width, 30))
-    searchField.backgroundColor = UIColor.whiteColor()
+    let searchField = UITextField(frame: CGRect(x: 16, y: 8, width: width, height: 30))
+    searchField.backgroundColor = UIColor.white
     searchField.placeholder = "Search"
-    searchField.returnKeyType = .Search
-    searchField.userInteractionEnabled = false
+    searchField.returnKeyType = .search
+    searchField.isUserInteractionEnabled = false
     searchField.tag = 999
     
     configureTextFieldElements(searchField)
     
     self.contentView.addSubview(searchField)
     
-    self.accessoryType = .None
-    self.selectionStyle = .None
+    self.accessoryType = .none
+    self.selectionStyle = .none
     self.backgroundColor = ThemeManager.defaultManager.currentTheme().sideMenuCellBackgroundColor
   }
   

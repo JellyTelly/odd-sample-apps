@@ -19,7 +19,7 @@ class VideoTableViewController: UITableViewController {
   var playerViewCell: VideoPlayerTableViewCell?
   
   
-  func configureWithInfo(video: OddVideo, related: OddMediaObjectCollection?) {
+  func configureWithInfo(_ video: OddVideo, related: OddMediaObjectCollection?) {
     self.related = related
     self.selectedVideo = video
     configureForVideo()
@@ -28,17 +28,17 @@ class VideoTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    self.setImageForTitleView("headerLogo", size: CGSizeMake(154, 29), centerForMissingRightButton: true)
+    self.setImageForTitleView("headerLogo", size: CGSize(width: 154, height: 29), centerForMissingRightButton: true)
     
     self.tableView.estimatedRowHeight = 80
     self.tableView.rowHeight = UITableViewAutomaticDimension
     
-    self.tableView.separatorColor = UIColor.clearColor()
+    self.tableView.separatorColor = UIColor.clear
     
     self.tableView.backgroundColor = ThemeManager.defaultManager.currentTheme().tableViewBackgroundColor
   }
   
-  override func viewWillDisappear(animated: Bool) {
+  override func viewWillDisappear(_ animated: Bool) {
     self.playerViewCell?.stopPlaying()
     self.playerViewCell?.moviePlayer?.player = nil
     self.playerViewCell?.moviePlayer = nil
@@ -47,68 +47,68 @@ class VideoTableViewController: UITableViewController {
   
   // MARK: - Table view data source
   
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     return 1
   }
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return relatedContents.count == 0 ? 1 : relatedContents.count
   }
   
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     var cell = UITableViewCell()
     do {
       let video = try relatedContents.lookup( UInt(indexPath.row) )
-      if indexPath.row == 0 {
-        if let cell = tableView.dequeueReusableCellWithIdentifier("PlayerViewCell", forIndexPath: indexPath) as? VideoPlayerTableViewCell {
+      if (indexPath as NSIndexPath).row == 0 {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerViewCell", for: indexPath) as? VideoPlayerTableViewCell {
           cell.configureWithVideo(video, showRelated: related != nil)
           self.playerViewCell = cell
           return cell
         }
       }
       else {
-        if let cell = tableView.dequeueReusableCellWithIdentifier("VideoInfoCell", forIndexPath: indexPath) as? VideoInfoTableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "VideoInfoCell", for: indexPath) as? VideoInfoTableViewCell {
           cell.configureWithVideo(video)
-          if let selected = self.selectedVideo where selected.id == video.id {
-            cell.backgroundColor = UIColor.lightGrayColor()
+          if let selected = self.selectedVideo, selected.id == video.id {
+            cell.backgroundColor = UIColor.lightGray
           }
           return cell
         }
       }
     }catch {
-      cell = tableView.dequeueReusableCellWithIdentifier("errorCell", forIndexPath: indexPath)
+      cell = tableView.dequeueReusableCell(withIdentifier: "errorCell", for: indexPath)
     }
     return cell
   }
   
-  override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return indexPath.row == 0 ? UITableViewAutomaticDimension : 80
+  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return (indexPath as NSIndexPath).row == 0 ? UITableViewAutomaticDimension : 80
   }
   
-  override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     if cell is VideoPlayerTableViewCell {
     } else {
       cell.addSeparatorLineToBottom()
     }
   }
   
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    if indexPath.row == 0 { return }
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if (indexPath as NSIndexPath).row == 0 { return }
     do {
       self.selectedVideo = try self.relatedContents.lookup( UInt(indexPath.row) )
       self.playerViewCell?.stopPlaying()
       configureForVideo()
-      dispatch_async(dispatch_get_main_queue(), { () -> Void in
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
+      DispatchQueue.main.async(execute: { () -> Void in
+        let indexPath = IndexPath(row: 0, section: 0)
+        self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
       })
     } catch {
       print("Selected topic not found")
     }
   }
   
-  override func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     if let cell = cell as? VideoPlayerTableViewCell {
       cell.stopPlaying()
     }
@@ -126,7 +126,7 @@ class VideoTableViewController: UITableViewController {
   
   // MARK: - Helpers
   func reload() {
-    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+    DispatchQueue.main.async(execute: { () -> Void in
       self.tableView.reloadData()
     })
   }
@@ -136,9 +136,9 @@ class VideoTableViewController: UITableViewController {
       self.relatedContents.append(selected)
     }
     if let related = self.related?.relationshipNodeWithName("entities")?.allIds {
-      OddContentStore.sharedStore.fetchObjectsOfType(.Video, ids: related, include: nil, callback: { (objects, errors) -> () in
+      OddContentStore.sharedStore.fetchObjectsOfType(.video, ids: related, include: nil, callback: { (objects, errors) -> () in
         if let contents = objects as? Array<OddVideo> {
-          dispatch_async(dispatch_get_main_queue(), { () -> Void in
+          DispatchQueue.main.async(execute: { () -> Void in
             for related in contents {
               self.relatedContents.append(related)
             }

@@ -26,56 +26,56 @@ struct Theme {
   var organizationId : String = "odd-networks"
   
   //TableViews
-  var tableViewBackgroundColor : UIColor = .lightGrayColor()
-  var tableViewSeparatorColor : UIColor = .whiteColor()
-  var tableViewAccessoryCellDescriptionColor : UIColor = .darkGrayColor()
-  var tableViewCellTintColor: UIColor = .clearColor()
-  var tableViewCellTitleLabelColor : UIColor = .blackColor()
-  var tableViewCellTextLabelColor : UIColor = .darkGrayColor()
-  var tableViewCellSecondaryTextLabelColor: UIColor = .lightGrayColor()
-  var tableViewSectionHeaderTextLabelColor : UIColor = .lightGrayColor()
-  var tableViewSectionHeaderBackgroundColor : UIColor = .darkGrayColor()
+  var tableViewBackgroundColor : UIColor = .lightGray
+  var tableViewSeparatorColor : UIColor = .white
+  var tableViewAccessoryCellDescriptionColor : UIColor = .darkGray
+  var tableViewCellTintColor: UIColor = .clear
+  var tableViewCellTitleLabelColor : UIColor = .black
+  var tableViewCellTextLabelColor : UIColor = .darkGray
+  var tableViewCellSecondaryTextLabelColor: UIColor = .lightGray
+  var tableViewSectionHeaderTextLabelColor : UIColor = .lightGray
+  var tableViewSectionHeaderBackgroundColor : UIColor = .darkGray
   
   //LoadingViews
-  var loadingViewActivityColor: UIColor = .lightGrayColor()
-  var loadingViewTextLabelColor: UIColor = .whiteColor()
-  var loadingViewBackgroundColor: UIColor = .darkGrayColor()
+  var loadingViewActivityColor: UIColor = .lightGray
+  var loadingViewTextLabelColor: UIColor = .white
+  var loadingViewBackgroundColor: UIColor = .darkGray
   
   //Authentication
-  var authModalBackgroundColor: UIColor = .blackColor()
-  var authModalTextLabelColor: UIColor = .whiteColor()
-  var authMenuTextLabelColor: UIColor = .whiteColor()
-  var authMenuButtonBackgroundColor: UIColor = .darkGrayColor()
-  var authMenuButtonTextLabelColor: UIColor = .whiteColor()
-  var authMenuBackgroundColor: UIColor = .blackColor()
+  var authModalBackgroundColor: UIColor = .black
+  var authModalTextLabelColor: UIColor = .white
+  var authMenuTextLabelColor: UIColor = .white
+  var authMenuButtonBackgroundColor: UIColor = .darkGray
+  var authMenuButtonTextLabelColor: UIColor = .white
+  var authMenuBackgroundColor: UIColor = .black
   
   //Promotion
-  var promoHomeOptionBackgroundColor: UIColor = .blackColor()
-  var promoPromoOptionBackgroundColor: UIColor = .blackColor()
-  var promoHeaderArrowColor: UIColor = .whiteColor()
-  var promoHeaderTextLabelColor: UIColor = .whiteColor()
+  var promoHomeOptionBackgroundColor: UIColor = .black
+  var promoPromoOptionBackgroundColor: UIColor = .black
+  var promoHeaderArrowColor: UIColor = .white
+  var promoHeaderTextLabelColor: UIColor = .white
   
   //Player
   var playerTitleOverlayAlpha: CGFloat =  0.5
-  var playerTitleOverlayTextLabelColor: UIColor = .lightGrayColor()
-  var playerTitleOverlayBackgroundColor: UIColor = .darkGrayColor()
-  var playerTitleTextLabelColor: UIColor = .blackColor()
-  var playerDescriptionTextLabelColor: UIColor = .darkGrayColor()
-  var playerControlsColor: UIColor = .darkGrayColor()
+  var playerTitleOverlayTextLabelColor: UIColor = .lightGray
+  var playerTitleOverlayBackgroundColor: UIColor = .darkGray
+  var playerTitleTextLabelColor: UIColor = .black
+  var playerDescriptionTextLabelColor: UIColor = .darkGray
+  var playerControlsColor: UIColor = .darkGray
   
   //PrimaryNavigationBar
-  var primaryNavigationBarTintColor : UIColor = .blackColor()
-  var primaryNavigationBarGradientCenterColor : UIColor = .whiteColor()
-  var primaryNavigationBarGradientEdgeColor : UIColor = .whiteColor()
+  var primaryNavigationBarTintColor : UIColor = .black
+  var primaryNavigationBarGradientCenterColor : UIColor = .white
+  var primaryNavigationBarGradientEdgeColor : UIColor = .white
   
   //SideMenu
-  var sideMenuSectionHeaderBackgroundColor : UIColor = .darkGrayColor()
-  var sideMenuSectionHeaderTextColor : UIColor = .whiteColor()
-  var sideMenuNavigationBarColor : UIColor = .lightGrayColor()
-  var sideMenuCellTitleTextLabelColor: UIColor = .blackColor()
-  var sideMenuCellBackgroundColor : UIColor = .clearColor()
-  var sideMenuCellAccessoryColor : UIColor = .blackColor()
-  var sideMenuCellSeparatorColor : UIColor = .lightGrayColor()
+  var sideMenuSectionHeaderBackgroundColor : UIColor = .darkGray
+  var sideMenuSectionHeaderTextColor : UIColor = .white
+  var sideMenuNavigationBarColor : UIColor = .lightGray
+  var sideMenuCellTitleTextLabelColor: UIColor = .black
+  var sideMenuCellBackgroundColor : UIColor = .clear
+  var sideMenuCellAccessoryColor : UIColor = .black
+  var sideMenuCellSeparatorColor : UIColor = .lightGray
   
   //Thumbnail
   // needs to be completed....
@@ -109,7 +109,7 @@ class ThemeManager: NSObject {
       _themeSettings = Theme()
       
       // build the theme from the theme settings file if found
-      if let path = NSBundle.mainBundle().pathForResource(themeFileName, ofType: "plist") {
+      if let path = Bundle.main.path(forResource: themeFileName, ofType: "plist") {
         if let dict = NSDictionary(contentsOfFile: path) as? Dictionary<String, AnyObject> {
           buildThemeFromDictionary(dict)
         }
@@ -120,11 +120,11 @@ class ThemeManager: NSObject {
   }
   
   
-  func rgbaFromDictionary( dict: Dictionary<String, AnyObject>) -> UIColor? {
+  func rgbaFromDictionary( _ dict: Dictionary<String, AnyObject>) -> UIColor? {
     if let r = dict["Red"] as? CGFloat,
-      g = dict["Green"] as? CGFloat,
-      b = dict["Blue"] as? CGFloat,
-      a = dict["Alpha"] as? CGFloat {
+      let g = dict["Green"] as? CGFloat,
+      let b = dict["Blue"] as? CGFloat,
+      let a = dict["Alpha"] as? CGFloat {
         return UIColor(red: r, green: g, blue: b, alpha: a)
     }
     return nil
@@ -132,14 +132,15 @@ class ThemeManager: NSObject {
   
   // returns a theme instance with any settings loaded from the bundles theme file
   // where a setting is not defined in the theme file the default will be used
-  func buildThemeFromDictionary( dict : Dictionary<String, AnyObject> ) {
+  func buildThemeFromDictionary( _ dict : Dictionary<String, AnyObject> ) {
     var newTheme = Theme()
     
     ////MARK: Organization
     if let organization = dict["Organization"] as? KeyValue {
-      if let id = organization["Id"] as? String, name = organization["Name"] as? String {
-        newTheme.organizationId = id
-        newTheme.organizationName = name
+      if let id = organization["Id"] as? String,
+        let name = organization["Name"] as? String {
+          newTheme.organizationId = id
+          newTheme.organizationName = name
       } else {
         newTheme.unreadThemes.append("organizationName")
         newTheme.unreadThemes.append("organizationId")
@@ -151,31 +152,46 @@ class ThemeManager: NSObject {
     ////MARK: TableViews
     if let tableViews = dict["TableViews"] as? KeyValue {
       
-      if let background = tableViews["Background"] as? KeyValue, backgroundColor = background["Color"] as? KeyValue {
-        if let colorBackground = rgbaFromDictionary(backgroundColor) {
-          newTheme.tableViewBackgroundColor = colorBackground
-        }
+      if let background = tableViews["Background"] as? KeyValue,
+        let backgroundColor = background["Color"] as? KeyValue {
+          if let colorBackground = rgbaFromDictionary(backgroundColor) {
+            newTheme.tableViewBackgroundColor = colorBackground
+          }
       } else {
         newTheme.unreadThemes.append("tableViewBackgroundColor")
       }
       
-      if let separators = tableViews["Separators"] as? KeyValue, separatorColor = separators["Color"] as? KeyValue {
-        if let colorSeparator = rgbaFromDictionary(separatorColor) {
-          newTheme.tableViewSeparatorColor = colorSeparator
-        }
+      if let separators = tableViews["Separators"] as? KeyValue,
+        let separatorColor = separators["Color"] as? KeyValue {
+          if let colorSeparator = rgbaFromDictionary(separatorColor) {
+            newTheme.tableViewSeparatorColor = colorSeparator
+          }
       } else {
         newTheme.unreadThemes.append("tableViewSeparatorColor")
       }
       
       if let cells = tableViews["Cells"] as? KeyValue {
-        if let accessoryCell = cells["AccessoryCell"] as? KeyValue, accessoryCellDescription = accessoryCell["Description"] as? KeyValue, accessoryCellDescriptionColor = accessoryCellDescription["Color"] as? KeyValue, tintColor = cells["TintColor"] as? KeyValue, text = cells["Text"] as? KeyValue, textColor = text["Color"] as? KeyValue, title = cells["Title"] as? KeyValue, titleColor = title["Color"] as? KeyValue, secondaryText = cells["SecondaryText"] as? KeyValue, secondaryTextColor = secondaryText["Color"] as? KeyValue {
-          if let colorAccessoryCellDescription = rgbaFromDictionary(accessoryCellDescriptionColor), colorTint = rgbaFromDictionary(tintColor), colorText = rgbaFromDictionary(textColor), colorTitle = rgbaFromDictionary(titleColor), colorSecondaryText = rgbaFromDictionary(secondaryTextColor) {
-            newTheme.tableViewAccessoryCellDescriptionColor = colorAccessoryCellDescription
-            newTheme.tableViewCellTintColor = colorTint
-            newTheme.tableViewCellTextLabelColor = colorText
-            newTheme.tableViewCellTitleLabelColor = colorTitle
-            newTheme.tableViewCellSecondaryTextLabelColor = colorSecondaryText
-          }
+        if let accessoryCell = cells["AccessoryCell"] as? KeyValue,
+          let accessoryCellDescription = accessoryCell["Description"] as? KeyValue,
+          let accessoryCellDescriptionColor = accessoryCellDescription["Color"] as? KeyValue,
+          let tintColor = cells["TintColor"] as? KeyValue,
+          let text = cells["Text"] as? KeyValue,
+          let textColor = text["Color"] as? KeyValue,
+          let title = cells["Title"] as? KeyValue,
+          let titleColor = title["Color"] as? KeyValue,
+          let secondaryText = cells["SecondaryText"] as? KeyValue,
+          let secondaryTextColor = secondaryText["Color"] as? KeyValue {
+            if let colorAccessoryCellDescription = rgbaFromDictionary(accessoryCellDescriptionColor),
+              let colorTint = rgbaFromDictionary(tintColor),
+              let colorText = rgbaFromDictionary(textColor),
+              let colorTitle = rgbaFromDictionary(titleColor),
+              let colorSecondaryText = rgbaFromDictionary(secondaryTextColor) {
+                newTheme.tableViewAccessoryCellDescriptionColor = colorAccessoryCellDescription
+                newTheme.tableViewCellTintColor = colorTint
+                newTheme.tableViewCellTextLabelColor = colorText
+                newTheme.tableViewCellTitleLabelColor = colorTitle
+                newTheme.tableViewCellSecondaryTextLabelColor = colorSecondaryText
+            }
         } else {
           newTheme.unreadThemes.append("tableViewAccessoryCellTitleColor")
           newTheme.unreadThemes.append("tableViewCellTintColor")
@@ -188,11 +204,14 @@ class ThemeManager: NSObject {
       }
       
       if let sectionHeaders = tableViews["SectionHeaders"] as? KeyValue {
-        if let text = sectionHeaders["Text"] as? KeyValue, textColor = text["Color"] as? KeyValue, background = sectionHeaders["Background"], backgroundColor = background["Color"] as? KeyValue {
-          if let colorText = rgbaFromDictionary(textColor), colorBackground = rgbaFromDictionary(backgroundColor) {
-            newTheme.tableViewSectionHeaderTextLabelColor = colorText
-            newTheme.tableViewSectionHeaderBackgroundColor = colorBackground
-          }
+        if let text = sectionHeaders["Text"] as? KeyValue,
+          let textColor = text["Color"] as? KeyValue,
+          let background = sectionHeaders["Background"],
+          let backgroundColor = background["Color"] as? KeyValue {
+            if let colorText = rgbaFromDictionary(textColor), let colorBackground = rgbaFromDictionary(backgroundColor) {
+              newTheme.tableViewSectionHeaderTextLabelColor = colorText
+              newTheme.tableViewSectionHeaderBackgroundColor = colorBackground
+            }
         } else {
           newTheme.unreadThemes.append("tableViewSectionHeaderTextLabelColor")
           newTheme.unreadThemes.append("tableViewSectionHeaderBackgroundColor")
@@ -206,12 +225,19 @@ class ThemeManager: NSObject {
     
     ////MARK: LoadingView
     if let loading = dict["LoadingView"] as? KeyValue {
-      if let background = loading["Background"] as? KeyValue, backgroundColor = background["Color"] as? KeyValue, text = loading["Text"] as? KeyValue, textColor = text["Color"] as? KeyValue, activity = loading["Activity"] as? KeyValue, activityColor = activity["Color"] as? KeyValue {
-        if let colorBackground = rgbaFromDictionary(backgroundColor), colorText = rgbaFromDictionary(textColor), colorActivity = rgbaFromDictionary(activityColor) {
-          newTheme.loadingViewBackgroundColor = colorBackground
-          newTheme.loadingViewTextLabelColor = colorText
-          newTheme.loadingViewActivityColor = colorActivity
-        }
+      if let background = loading["Background"] as? KeyValue,
+        let backgroundColor = background["Color"] as? KeyValue,
+        let text = loading["Text"] as? KeyValue,
+        let textColor = text["Color"] as? KeyValue,
+        let activity = loading["Activity"] as? KeyValue,
+        let activityColor = activity["Color"] as? KeyValue {
+          if let colorBackground = rgbaFromDictionary(backgroundColor),
+            let colorText = rgbaFromDictionary(textColor),
+            let colorActivity = rgbaFromDictionary(activityColor) {
+              newTheme.loadingViewBackgroundColor = colorBackground
+              newTheme.loadingViewTextLabelColor = colorText
+              newTheme.loadingViewActivityColor = colorActivity
+          }
       } else {
         newTheme.unreadThemes.append("loadingViewBackgroundColor")
         newTheme.unreadThemes.append("loadingViewTextLabelColor")
@@ -224,11 +250,15 @@ class ThemeManager: NSObject {
     ////Mark: Auth
     if let auth = dict["Auth"] as? KeyValue {
       if let modal = auth["Modal"] as? KeyValue {
-        if let background = modal["Background"] as? KeyValue, backgroundColor = background["Color"] as? KeyValue, text = modal["Text"] as? KeyValue, textColor = text["Color"] as? KeyValue  {
-          if let colorBackground = rgbaFromDictionary(backgroundColor), colorText = rgbaFromDictionary(textColor) {
-            newTheme.authModalBackgroundColor = colorBackground
-            newTheme.authModalTextLabelColor = colorText
-          }
+        if let background = modal["Background"] as? KeyValue,
+          let backgroundColor = background["Color"] as? KeyValue,
+          let text = modal["Text"] as? KeyValue,
+          let textColor = text["Color"] as? KeyValue  {
+            if let colorBackground = rgbaFromDictionary(backgroundColor),
+              let colorText = rgbaFromDictionary(textColor) {
+                newTheme.authModalBackgroundColor = colorBackground
+                newTheme.authModalTextLabelColor = colorText
+            }
         } else {
           newTheme.unreadThemes.append("authModalBackgroundColor")
           newTheme.unreadThemes.append("authModalTextLabelColor")
@@ -237,19 +267,28 @@ class ThemeManager: NSObject {
         newTheme.unreadThemes.append("authModal")
       }
       if let menu = auth["Menu"] as? KeyValue {
-        if let button = menu["Button"] as? KeyValue, background = button["Background"] as? KeyValue, backgroundColor = background["Color"] as? KeyValue, text = button["Text"] as? KeyValue, textColor = text["Color"] as? KeyValue {
-          if let colorBackground = rgbaFromDictionary(backgroundColor), colorText = rgbaFromDictionary(textColor) {
-            newTheme.authMenuButtonBackgroundColor = colorBackground
-            newTheme.authMenuButtonTextLabelColor = colorText
-          }
+        if let button = menu["Button"] as? KeyValue,
+          let background = button["Background"] as? KeyValue,
+          let backgroundColor = background["Color"] as? KeyValue,
+          let text = button["Text"] as? KeyValue,
+          let textColor = text["Color"] as? KeyValue {
+            if let colorBackground = rgbaFromDictionary(backgroundColor),
+              let colorText = rgbaFromDictionary(textColor) {
+                newTheme.authMenuButtonBackgroundColor = colorBackground
+                newTheme.authMenuButtonTextLabelColor = colorText
+            }
         } else {
           newTheme.unreadThemes.append("authMenuButton")
         }
-        if let text = menu["Text"] as? KeyValue, textColor = text["Color"] as? KeyValue, background = menu["Background"] as? KeyValue, backgroundColor = background["Color"] as? KeyValue  {
-          if let colorBackground = rgbaFromDictionary(backgroundColor), colorText = rgbaFromDictionary(textColor) {
-            newTheme.authMenuBackgroundColor = colorBackground
-            newTheme.authMenuTextLabelColor = colorText
-          }
+        if let text = menu["Text"] as? KeyValue,
+          let textColor = text["Color"] as? KeyValue,
+          let background = menu["Background"] as? KeyValue,
+          let backgroundColor = background["Color"] as? KeyValue  {
+            if let colorBackground = rgbaFromDictionary(backgroundColor),
+              let colorText = rgbaFromDictionary(textColor) {
+                newTheme.authMenuBackgroundColor = colorBackground
+                newTheme.authMenuTextLabelColor = colorText
+            }
         } else {
           newTheme.unreadThemes.append("authMenuBackgroundColor")
           newTheme.unreadThemes.append("authMenutextColor")
@@ -264,13 +303,23 @@ class ThemeManager: NSObject {
     ////MARK: Promotion
     if let promotion = dict["Promotion"] as? KeyValue {
       if let header = promotion["Header"] as? KeyValue {
-        if let homeOptionBackground = header["HomeOptionBackground"] as? KeyValue, homeOptionBackgroundColor = homeOptionBackground["Color"] as? KeyValue, promoOptionBackground = header["PromoOptionBackground"] as? KeyValue, promoOptionBackgroundColor = promoOptionBackground["Color"] as? KeyValue, arrow = header["Arrow"] as? KeyValue, arrowColor = arrow["Color"] as? KeyValue, text = header["Text"] as? KeyValue, textColor = text["Color"] as? KeyValue {
-          if let colorHomeOptionBackground = rgbaFromDictionary(homeOptionBackgroundColor), colorPromoOptionBackground = rgbaFromDictionary(promoOptionBackgroundColor), colorArrow = rgbaFromDictionary(arrowColor), colorText = rgbaFromDictionary(textColor) {
-            newTheme.promoHomeOptionBackgroundColor = colorHomeOptionBackground
-            newTheme.promoPromoOptionBackgroundColor = colorPromoOptionBackground
-            newTheme.promoHeaderArrowColor = colorArrow
-            newTheme.promoHeaderTextLabelColor = colorText
-          }
+        if let homeOptionBackground = header["HomeOptionBackground"] as? KeyValue,
+          let homeOptionBackgroundColor = homeOptionBackground["Color"] as? KeyValue,
+          let promoOptionBackground = header["PromoOptionBackground"] as? KeyValue,
+          let promoOptionBackgroundColor = promoOptionBackground["Color"] as? KeyValue,
+          let arrow = header["Arrow"] as? KeyValue,
+          let arrowColor = arrow["Color"] as? KeyValue,
+          let text = header["Text"] as? KeyValue,
+          let textColor = text["Color"] as? KeyValue {
+            if let colorHomeOptionBackground = rgbaFromDictionary(homeOptionBackgroundColor),
+              let colorPromoOptionBackground = rgbaFromDictionary(promoOptionBackgroundColor),
+              let colorArrow = rgbaFromDictionary(arrowColor),
+              let colorText = rgbaFromDictionary(textColor) {
+                newTheme.promoHomeOptionBackgroundColor = colorHomeOptionBackground
+                newTheme.promoPromoOptionBackgroundColor = colorPromoOptionBackground
+                newTheme.promoHeaderArrowColor = colorArrow
+                newTheme.promoHeaderTextLabelColor = colorText
+            }
         } else {
           newTheme.unreadThemes.append("promoHomeOptionBackgroundColor")
           newTheme.unreadThemes.append("promoPromoOptionBackgroundColor")
@@ -287,12 +336,17 @@ class ThemeManager: NSObject {
     ////MARK: Player
     if let player = dict["Player"] as? KeyValue {
       if let titleOverlay = player["TitleOverlay"] as? KeyValue {
-        if let alpha = titleOverlay["Alpha"] as? CGFloat, text = titleOverlay["Text"] as? KeyValue, textColor = text["Color"] as? KeyValue, background = titleOverlay["Background"] as? KeyValue, backgroundColor = background["Color"] as? KeyValue {
-          newTheme.playerTitleOverlayAlpha = alpha
-          if let colorText = rgbaFromDictionary(textColor), colorBackground = rgbaFromDictionary(backgroundColor) {
-            newTheme.playerTitleOverlayTextLabelColor = colorText
-            newTheme.playerTitleOverlayBackgroundColor = colorBackground
-          }
+        if let alpha = titleOverlay["Alpha"] as? CGFloat,
+          let text = titleOverlay["Text"] as? KeyValue,
+          let textColor = text["Color"] as? KeyValue,
+          let background = titleOverlay["Background"] as? KeyValue,
+          let backgroundColor = background["Color"] as? KeyValue {
+            newTheme.playerTitleOverlayAlpha = alpha
+            if let colorText = rgbaFromDictionary(textColor),
+              let colorBackground = rgbaFromDictionary(backgroundColor) {
+                newTheme.playerTitleOverlayTextLabelColor = colorText
+                newTheme.playerTitleOverlayBackgroundColor = colorBackground
+            }
         } else {
           newTheme.unreadThemes.append("playerTitleOverlayAlpha")
           newTheme.unreadThemes.append("playerTitleOverlayTextLabelColor")
@@ -301,12 +355,19 @@ class ThemeManager: NSObject {
       } else {
         newTheme.unreadThemes.append("playerTitleOverlay")
       }
-      if let title = player["Title"] as? KeyValue, titleColor = title["Color"] as? KeyValue, description = player["Description"] as? KeyValue, descriptionColor = description["Color"] as? KeyValue, controls = player["Controls"] as? KeyValue, controlsColor = controls["Color"] as? KeyValue {
-        if let colorTitle = rgbaFromDictionary(titleColor), colorDescription = rgbaFromDictionary(descriptionColor), colorControls = rgbaFromDictionary(controlsColor) {
-          newTheme.playerTitleTextLabelColor = colorTitle
-          newTheme.playerDescriptionTextLabelColor = colorDescription
-          newTheme.playerControlsColor = colorControls
-        }
+      if let title = player["Title"] as? KeyValue,
+        let titleColor = title["Color"] as? KeyValue,
+        let description = player["Description"] as? KeyValue,
+        let descriptionColor = description["Color"] as? KeyValue,
+        let controls = player["Controls"] as? KeyValue,
+        let controlsColor = controls["Color"] as? KeyValue {
+          if let colorTitle = rgbaFromDictionary(titleColor),
+            let colorDescription = rgbaFromDictionary(descriptionColor),
+            let colorControls = rgbaFromDictionary(controlsColor) {
+              newTheme.playerTitleTextLabelColor = colorTitle
+              newTheme.playerDescriptionTextLabelColor = colorDescription
+              newTheme.playerControlsColor = colorControls
+          }
       } else {
         newTheme.unreadThemes.append("playerControlsColor")
         newTheme.unreadThemes.append("playerTitleTextLabelColor")
@@ -325,11 +386,14 @@ class ThemeManager: NSObject {
       } else {
         newTheme.unreadThemes.append("primaryNavigationBarTintColor")
       }
-      if let gradient = primaryNavBar["Gradient"] as? KeyValue, centerColor = gradient["CenterColor"] as? KeyValue, edgeColor = gradient["EdgeColor"] as? KeyValue {
-        if let colorCenter = rgbaFromDictionary(centerColor), colorEdge = rgbaFromDictionary(edgeColor) {
-          newTheme.primaryNavigationBarGradientCenterColor = colorCenter
-          newTheme.primaryNavigationBarGradientEdgeColor = colorEdge
-        }
+      if let gradient = primaryNavBar["Gradient"] as? KeyValue,
+        let centerColor = gradient["CenterColor"] as? KeyValue,
+        let edgeColor = gradient["EdgeColor"] as? KeyValue {
+          if let colorCenter = rgbaFromDictionary(centerColor),
+            let colorEdge = rgbaFromDictionary(edgeColor) {
+              newTheme.primaryNavigationBarGradientCenterColor = colorCenter
+              newTheme.primaryNavigationBarGradientEdgeColor = colorEdge
+          }
       } else {
         newTheme.unreadThemes.append("primaryNavigationBarGradient")
       }
@@ -339,25 +403,43 @@ class ThemeManager: NSObject {
     
     ////MARK: SideMenu
     if let menu = dict["SideMenu"] as? KeyValue {
-      if let sectionHeader = menu["SectionHeader"] as? KeyValue, sectionHeaderBackground = sectionHeader["Background"] as? KeyValue, sectionHeaderBackgroundColor = sectionHeaderBackground["Color"] as? KeyValue, sectionHeaderText = sectionHeader["Text"] as? KeyValue, sectionHeaderTextColor = sectionHeaderText["Color"] as? KeyValue, navBar = menu["NavigationBar"] as? KeyValue, navBarColor = navBar["Color"] as? KeyValue {
-        if let colorSectionHeaderBackground = rgbaFromDictionary(sectionHeaderBackgroundColor), colorSectionHeaderText = rgbaFromDictionary(sectionHeaderTextColor), colorNavBar = rgbaFromDictionary(navBarColor) {
-          newTheme.sideMenuSectionHeaderBackgroundColor = colorSectionHeaderBackground
-          newTheme.sideMenuSectionHeaderTextColor = colorSectionHeaderText
-          newTheme.sideMenuNavigationBarColor = colorNavBar
-        }
+      if let sectionHeader = menu["SectionHeader"] as? KeyValue,
+      let sectionHeaderBackground = sectionHeader["Background"] as? KeyValue,
+        let sectionHeaderBackgroundColor = sectionHeaderBackground["Color"] as? KeyValue,
+        let sectionHeaderText = sectionHeader["Text"] as? KeyValue,
+        let sectionHeaderTextColor = sectionHeaderText["Color"] as? KeyValue,
+        let navBar = menu["NavigationBar"] as? KeyValue,
+        let navBarColor = navBar["Color"] as? KeyValue {
+          if let colorSectionHeaderBackground = rgbaFromDictionary(sectionHeaderBackgroundColor),
+            let colorSectionHeaderText = rgbaFromDictionary(sectionHeaderTextColor),
+            let colorNavBar = rgbaFromDictionary(navBarColor) {
+              newTheme.sideMenuSectionHeaderBackgroundColor = colorSectionHeaderBackground
+              newTheme.sideMenuSectionHeaderTextColor = colorSectionHeaderText
+              newTheme.sideMenuNavigationBarColor = colorNavBar
+          }
       } else {
         newTheme.unreadThemes.append("sideMenuSectionHeaderBackgroundColor")
         newTheme.unreadThemes.append("sideMenuSectionHeaderTextColor")
         newTheme.unreadThemes.append("sideMenuNavigationbarColor")
       }
       if let cells = menu["Cells"] as? KeyValue {
-        if let title = cells["Title"] as? KeyValue, titleColor = title["Color"] as? KeyValue, background = cells["Background"] as? KeyValue, backgroundColor = background["Color"] as? KeyValue, accessory = cells["Accessory"] as? KeyValue, accessoryColor = accessory["Color"] as? KeyValue, separator = cells["Separators"] as? KeyValue, separatorColor = separator["Color"] as? KeyValue {
-          if let colorTitle = rgbaFromDictionary(titleColor), colorBackground = rgbaFromDictionary(backgroundColor), colorAccessory = rgbaFromDictionary(accessoryColor), colorSeparator = rgbaFromDictionary(separatorColor) {
-            newTheme.sideMenuCellTitleTextLabelColor = colorTitle
-            newTheme.sideMenuCellBackgroundColor = colorBackground
-            newTheme.sideMenuCellAccessoryColor = colorAccessory
-            newTheme.sideMenuCellSeparatorColor = colorSeparator
-          }
+        if let title = cells["Title"] as? KeyValue,
+          let titleColor = title["Color"] as? KeyValue,
+          let background = cells["Background"] as? KeyValue,
+          let backgroundColor = background["Color"] as? KeyValue,
+          let accessory = cells["Accessory"] as? KeyValue,
+          let accessoryColor = accessory["Color"] as? KeyValue,
+          let separator = cells["Separators"] as? KeyValue,
+          let separatorColor = separator["Color"] as? KeyValue {
+            if let colorTitle = rgbaFromDictionary(titleColor),
+              let colorBackground = rgbaFromDictionary(backgroundColor),
+              let colorAccessory = rgbaFromDictionary(accessoryColor),
+              let colorSeparator = rgbaFromDictionary(separatorColor) {
+                newTheme.sideMenuCellTitleTextLabelColor = colorTitle
+                newTheme.sideMenuCellBackgroundColor = colorBackground
+                newTheme.sideMenuCellAccessoryColor = colorAccessory
+                newTheme.sideMenuCellSeparatorColor = colorSeparator
+            }
         } else {
           newTheme.unreadThemes.append("sideMenuCellTitleLabelColor")
           newTheme.unreadThemes.append("sideMenuCellBackgroundColor")

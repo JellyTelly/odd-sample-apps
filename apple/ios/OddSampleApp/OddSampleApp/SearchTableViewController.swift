@@ -31,10 +31,10 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
     configureNavBar()
     self.tableView.backgroundColor = ThemeManager.defaultManager.currentTheme().tableViewBackgroundColor
     self.tableView.contentInset = UIEdgeInsetsMake( -36, 0, 0, 0)
-    self.tableView.tableFooterView = UIView(frame: CGRectZero)
+    self.tableView.tableFooterView = UIView(frame: CGRect.zero)
   }
   
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     self.activateSearchField()
   }
   
@@ -44,13 +44,13 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
   
   func configureNavBar() {
     let width = self.view.frame.width  * 0.7
-    searchField = UITextField(frame: CGRectMake(0, 0, width, 30))
+    searchField = UITextField(frame: CGRect(x: 0, y: 0, width: width, height: 30))
     if let searchField = searchField {
-      searchField.backgroundColor = UIColor.whiteColor()
+      searchField.backgroundColor = UIColor.white
       searchField.placeholder = "Search"
-      searchField.returnKeyType = .Search
+      searchField.returnKeyType = .search
       searchField.delegate = self
-      searchField.tintColor = .darkGrayColor()
+      searchField.tintColor = .darkGray
       
       configureTextFieldElements(searchField)
       
@@ -58,39 +58,39 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
       self.navigationItem.leftBarButtonItem = searchItem
     }
     
-    let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(SearchTableViewController.exitSearch))
+    let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(SearchTableViewController.exitSearch))
     self.navigationItem.rightBarButtonItem = cancelButton
   }
   
-  func configureTextFieldElements(textField: UITextField) {
+  func configureTextFieldElements(_ textField: UITextField) {
     let iconSize: CGFloat = 18
-    let container = UIView(frame: CGRectMake(4, 0, 28, 18))
-    let magnifyView = UIImageView(frame: CGRectMake(0, 0, iconSize, iconSize))
+    let container = UIView(frame: CGRect(x: 4, y: 0, width: 28, height: 18))
+    let magnifyView = UIImageView(frame: CGRect(x: 0, y: 0, width: iconSize, height: iconSize))
     magnifyView.image = UIImage(named: "magnify")
-    magnifyView.image = magnifyView.image!.imageWithRenderingMode(.AlwaysTemplate)
-    magnifyView.tintColor = .lightGrayColor()
+    magnifyView.image = magnifyView.image!.withRenderingMode(.alwaysTemplate)
+    magnifyView.tintColor = .lightGray
     
     container.addSubview(magnifyView)
     magnifyView.center.x += 4
     //    magnifyView.center.y -= 4
     textField.leftView = container
     
-    textField.leftViewMode = .Always
+    textField.leftViewMode = .always
   }
   
-  func fetchSearchResults( term: String ) {
+  func fetchSearchResults( _ term: String ) {
     OddContentStore.sharedStore.searchForTerm(term) { (videos, collections) -> Void in
       print("Found \(videos!.count) videos and \(collections!.count) collections")
       let courseCollections = self.cleanCollections(collections)
       self.foundCollections = courseCollections
       self.foundVideos = videos
-      dispatch_async(dispatch_get_main_queue(), { () -> Void in
+      DispatchQueue.main.async(execute: { () -> Void in
         self.tableView.reloadData()
       })
     }
   }
   
-  func cleanCollections(collections: Array<OddMediaObjectCollection>?) -> Array<OddMediaObjectCollection>? {
+  func cleanCollections(_ collections: Array<OddMediaObjectCollection>?) -> Array<OddMediaObjectCollection>? {
     if collections == nil { return nil }
     
     return collections
@@ -98,7 +98,7 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
   
   func exitSearch() {
     print("Exit Search")
-    performSegueWithIdentifier("exitSearchUnwind", sender: self)
+    performSegue(withIdentifier: "exitSearchUnwind", sender: self)
   }
   
   override func didReceiveMemoryWarning() {
@@ -108,11 +108,11 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
   
   // MARK: - Table view data source
   
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     return haveSearchResults() ? 2 : 1
   }
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if !haveSearchResults() {
       return 1
     }
@@ -130,14 +130,14 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
     }
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("SearchInfoCell", forIndexPath: indexPath) as! VideoInfoTableViewCell
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "SearchInfoCell", for: indexPath) as! VideoInfoTableViewCell
     
-    self.tableView.separatorColor = UIColor.clearColor()
+    self.tableView.separatorColor = UIColor.clear
     cell.addSeparatorLineToBottom()
     cell.textLabel?.text = ""
     cell.notesLabel.text = ""
-    cell.accessoryType = .None
+    cell.accessoryType = .none
     
     let titleColor = ThemeManager.defaultManager.currentTheme().tableViewCellTitleLabelColor
     let subtitleColor = ThemeManager.defaultManager.currentTheme().tableViewCellTextLabelColor
@@ -147,13 +147,13 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
     cell.titleLabel?.textColor = titleColor
     cell.notesLabel?.textColor = subtitleColor
     
-    cell.backgroundColor = .clearColor()
-    cell.contentView.backgroundColor = .clearColor()
-    cell.thumbnailImageView.hidden = false
-    cell.durationBackground?.hidden = true
+    cell.backgroundColor = .clear
+    cell.contentView.backgroundColor = .clear
+    cell.thumbnailImageView.isHidden = false
+    cell.durationBackground?.isHidden = true
     
     if haveSearchResults() {
-      if indexPath.section == 0 { // collections
+      if (indexPath as NSIndexPath).section == 0 { // collections
         if let collections = foundCollections {
           if collections.count == 0 {
             cell.titleLabel.text = "No Collections Found"
@@ -164,7 +164,7 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
             })
             cell.titleLabel.text = currentCollection.title
             cell.notesLabel.text = currentCollection.notes
-            cell.accessoryType = .DisclosureIndicator
+            cell.accessoryType = .disclosureIndicator
           }
           
         }
@@ -175,47 +175,47 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
           } else {
             let currentVideo = videos[indexPath.row]
             //            currentVideo.configureCell(cell)
-            cell.backgroundColor = .clearColor()
+            cell.backgroundColor = .clear
             currentVideo.thumbnail({ (thumbnail) -> () in
               cell.thumbnailImageView.image = thumbnail
             })
             cell.titleLabel.text = currentVideo.title
             cell.notesLabel.text = currentVideo.notes
-            cell.durationBackground?.hidden = false
+            cell.durationBackground?.isHidden = false
             cell.durationLabel?.text = currentVideo.durationAsTimeString()
-            cell.accessoryType = .DisclosureIndicator
+            cell.accessoryType = .disclosureIndicator
           }
         }
       } // videos
     } else {
       cell.titleLabel.text = ""
       cell.thumbnailImageView.image = nil
-      cell.thumbnailImageView.hidden = true
+      cell.thumbnailImageView.isHidden = true
       cell.textLabel?.text = "No Search Results..."
       cell.textLabel?.textColor = ThemeManager.defaultManager.currentTheme().tableViewCellTitleLabelColor
-      self.tableView.separatorStyle = .None
+      self.tableView.separatorStyle = .none
     }
     
     //    if haveSearchResults() {
     //      cell.backgroundColor = UIColor(red:0.08, green:0.09, blue:0.15, alpha:1)
     //      cell.contentView.backgroundColor = UIColor(red:0.08, green:0.09, blue:0.15, alpha:1)
     //    } else {
-    cell.backgroundColor = .clearColor()
-    cell.contentView.backgroundColor = .clearColor()
+    cell.backgroundColor = .clear
+    cell.contentView.backgroundColor = .clear
     //    }
     
     return cell
   }
   
-  override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+  override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let text = section == 0 ? "Collections" : "Videos"
     
-    let frame = CGRectMake(0, 0, tableView.frame.width, 29)
+    let frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: 29)
     let headerView = UIView(frame: frame)
     
     headerView.backgroundColor = ThemeManager.defaultManager.currentTheme().tableViewSectionHeaderBackgroundColor
     
-    let labelFrame = CGRectMake(8, 0, tableView.frame.width - 8, 29)
+    let labelFrame = CGRect(x: 8, y: 0, width: tableView.frame.width - 8, height: 29)
     let label = UILabel(frame: labelFrame)
     label.text = text
     
@@ -226,60 +226,60 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
     return headerView
   }
   
-  override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 80
   }
   
-  override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+  override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return haveSearchResults() ? 29 : 0
   }
   
   //MARK: Navigation
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "showCollectionDetail" {
-      if let vc = segue.destinationViewController as? CollectionTableViewController,
-        collection = self.selectedCollection {
+      if let vc = segue.destination as? CollectionTableViewController,
+        let collection = self.selectedCollection {
           vc.mediaObjectCollection = collection
 //          vc.course = collection
       }
     } else if segue.identifier == "showVideoDetail" {
-      if let vc = segue.destinationViewController as? VideoTableViewController,
-        video = selectedVideo {
+      if let vc = segue.destination as? VideoTableViewController,
+        let video = selectedVideo {
           vc.configureWithInfo(video, related: nil)
       }
     }
   }
   
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if !haveSearchResults() { return }
     do {
-      if indexPath.section == 0 { // video collections
+      if (indexPath as NSIndexPath).section == 0 { // video collections
         if let collections = foundCollections {
           self.selectedCollection = try collections.lookup( UInt(indexPath.row) )
-          self.performSegueWithIdentifier("showCollectionDetail", sender: self)
+          self.performSegue(withIdentifier: "showCollectionDetail", sender: self)
         }
       } else {
         if let videos = foundVideos {
           self.selectedVideo = try videos.lookup( UInt(indexPath.row) )
-          self.performSegueWithIdentifier("showVideoDetail", sender: self)
+          self.performSegue(withIdentifier: "showVideoDetail", sender: self)
         }
       }
     } catch {
-      self.tableView?.deselectRowAtIndexPath(indexPath, animated: true)
+      self.tableView?.deselectRow(at: indexPath, animated: true)
       print("clicked cell with no data")
     }
   }
   
   //MARK: helpers
   func showSearchErrorAlert() {
-    let alert = UIAlertController(title: "Search Error", message: "Server responded with an error. Please try again.", preferredStyle: .Alert)
-    let action = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action) -> Void in
+    let alert = UIAlertController(title: "Search Error", message: "Server responded with an error. Please try again.", preferredStyle: .alert)
+    let action = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (action) -> Void in
       self.resetSearchTable()
     }
     alert.addAction(action)
-    self.presentViewController(alert, animated: true) { () -> Void in
-      dispatch_async(dispatch_get_main_queue(), { () -> Void in
-        NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "endedSearch", object: nil))
+    self.present(alert, animated: true) { () -> Void in
+      DispatchQueue.main.async(execute: { () -> Void in
+        NotificationCenter.default.post(Notification(name: "endedSearch" as NSNotification.Name, object: nil))
       })
     }
   }
@@ -295,9 +295,9 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
     self.tableView.reloadData()
   }
   
-  func textFieldShouldReturn(textField: UITextField) -> Bool {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     if textField.text?.characters.count > 0 {
-      let query = textField.text?.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+      let query = textField.text?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
       print("search for: \(query)")
       fetchSearchResults(query!)
     } else {

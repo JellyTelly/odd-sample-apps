@@ -12,7 +12,7 @@ import UIKit
 extension UITableViewCell {
   
   func addSeparatorLineToBottom(){
-    let lineFrame = CGRectMake(8, self.bounds.size.height - 1, self.bounds.size.width - 16, 1)
+    let lineFrame = CGRect(x: 8, y: self.bounds.size.height - 1, width: self.bounds.size.width - 16, height: 1)
     let line = UIView(frame: lineFrame)
     line.backgroundColor = ThemeManager.defaultManager.currentTheme().tableViewSeparatorColor
     addSubview(line)
