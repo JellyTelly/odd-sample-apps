@@ -19,7 +19,7 @@ class HomeCollectionViewController: UICollectionViewController {
   
   var collections = Array<OddMediaObjectCollection>() {
     didSet {
-      dispatch_async(dispatch_get_main_queue(), { () -> Void in
+      DispatchQueue.main.async(execute: { () -> Void in
         self.collectionView?.reloadData()
       })
     }
@@ -33,40 +33,40 @@ class HomeCollectionViewController: UICollectionViewController {
   
   // MARK: UICollectionViewDataSource
   
-  override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+  override func numberOfSections(in collectionView: UICollectionView) -> Int {
     return 1
   }
   
   
-  override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     guard let node = self.collection.relationshipNodeWithName("entities") else { return 0 }
     return node.numberOfRelationships
   }
   
   
-  override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-    guard let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as? CollectionCell else { return UICollectionViewCell() }
+  override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as? CollectionCell else { return UICollectionViewCell() }
     
     // fetch the collection associated with this cell
-    let currentCollection = self.collections[indexPath.row]
+    let currentCollection = self.collections[(indexPath as NSIndexPath).row]
     cell.configureWithCollection(currentCollection)
     return cell
     
   }
   
-  override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-    print("Selected: \(indexPath.row)")
+  override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    print("Selected: \((indexPath as NSIndexPath).row)")
     
     // you really want to be sure this is not an index out of bounds
-    let selectedCollection = self.collections[indexPath.row]
-    self.performSegueWithIdentifier("showCollectionInfoSegue", sender: selectedCollection)
+    let selectedCollection = self.collections[(indexPath as NSIndexPath).row]
+    self.performSegue(withIdentifier: "showCollectionInfoSegue", sender: selectedCollection)
   }
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
     guard let id = segue.identifier else { return }
     switch id {
     case "showCollectionInfoSegue":
-      guard let vc = segue.destinationViewController as? CollectionInfoViewController else { break }
+      guard let vc = segue.destination as? CollectionInfoViewController else { break }
 
       if let collection = sender as? OddMediaObjectCollection {
           vc.collection = collection
@@ -91,7 +91,7 @@ class HomeCollectionViewController: UICollectionViewController {
       return
     }
       
-    OddContentStore.sharedStore.objectsOfType(.View, ids: [homeViewId], include: "featuredMedia,featuredCollections,promotion") { (objects, errors) in
+    OddContentStore.sharedStore.objectsOfType(.view, ids: [homeViewId], include: "featuredMedia,featuredCollections,promotion") { (objects, errors) in
       if errors != nil {
         OddLogger.error("Unable to fetch homeview: \(errors!.first?.localizedDescription)")
         return
@@ -111,7 +111,7 @@ class HomeCollectionViewController: UICollectionViewController {
         
         let featuredCollectionId = node.id
         
-        OddContentStore.sharedStore.objectsOfType(.Collection, ids: [featuredCollectionId], include: "entities", callback: { (objects, errors) in
+        OddContentStore.sharedStore.objectsOfType(.collection, ids: [featuredCollectionId], include: "entities", callback: { (objects, errors) in
           if errors != nil {
             OddLogger.error("Error loading featuredCollection")
             return
@@ -132,9 +132,9 @@ class HomeCollectionViewController: UICollectionViewController {
   func configureSDK() {
     // Setting the log level to .Info provides additional information from the OddContentStore
     // The OddLogger has 3 levels: .Info, .Warning and .Error. The default is .Error
-    OddLogger.logLevel = .Info
+    OddLogger.logLevel = .info
     
-    OddContentStore.sharedStore.API.serverMode = .Local
+    OddContentStore.sharedStore.API.serverMode = .local
     /*
     If you are running your own Oddworks server the server will provide tokens for each channel
     and device you have configured when it launches. Paste the apple-tv token below. 
@@ -159,7 +159,7 @@ class HomeCollectionViewController: UICollectionViewController {
     guard let node = self.collection.relationshipNodeWithName("entities"),
       let ids = node.allIds  else { return }
     
-    OddContentStore.sharedStore.objectsOfType(.Collection, ids: ids, include: nil) { (objects, errors) in
+    OddContentStore.sharedStore.objectsOfType(.collection, ids: ids, include: nil) { (objects, errors) in
       if let theCollections = objects as? Array<OddMediaObjectCollection> {
         self.collections = theCollections
       }

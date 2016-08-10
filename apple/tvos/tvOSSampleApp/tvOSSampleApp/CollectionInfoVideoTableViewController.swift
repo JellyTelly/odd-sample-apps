@@ -25,38 +25,38 @@ class CollectionInfoVideoTableViewController: UITableViewController {
   
   // MARK: - Table view data source
   
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     return 1
   }
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return videos.count
   }
   
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("videoCell", forIndexPath: indexPath)
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "videoCell", for: indexPath)
     
     
-    let currentVideo = self.videos[indexPath.row]
+    let currentVideo = self.videos[(indexPath as NSIndexPath).row]
     
     cell.textLabel?.text = currentVideo.title
     
     return cell
   }
   
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    let currentVideo = self.videos[indexPath.row]
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let currentVideo = self.videos[(indexPath as NSIndexPath).row]
     
     let playerVC = AVPlayerViewController()
     
     if let urlString = currentVideo.urlString {
-      if let videoURL = NSURL(string: urlString) {
-        let mediaItem = AVPlayerItem(URL: videoURL)
+      if let videoURL = URL(string: urlString) {
+        let mediaItem = AVPlayerItem(url: videoURL)
         let player = AVPlayer(playerItem: mediaItem)
         playerVC.player = player
         playerVC.player?.play()
-        self.presentViewController(playerVC, animated: true, completion: { () -> Void in
+        self.present(playerVC, animated: true, completion: { () -> Void in
           
         })
       }
